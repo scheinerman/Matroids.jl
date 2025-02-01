@@ -33,3 +33,7 @@ Let `M` be a matroid.
 * The rank of `M` is given by `rank(M)`.
 
 * If `S` is a subset of the elements of `M`, the rank of that set is given by `rank(M,S)`.
+
+* Use `isindependent(M,S)` to check if `S` is an independent subset of the elements of `M`. 
+
+Note that if `S` is not a subset of the elements of `M`, an error is thrown. 
