@@ -1,7 +1,5 @@
 abstract type AbstractRankFunction end
 
-# export AbstractRankFunction, MatrixRankFunction
-
 struct MatrixRankFunction <: AbstractRankFunction
     A::Matrix
     function MatrixRankFunction(M)
@@ -50,7 +48,7 @@ struct UniformRankFunction <: AbstractRankFunction
     end
 end
 
-function (ur::UniformRankFunction)(S::Set{T}) where T<:Integer
+function (ur::UniformRankFunction)(S::Set{T}) where {T<:Integer}
     _set_check(S, ur.m)
     ns = length(S)
     return min(ur.k, ns)
