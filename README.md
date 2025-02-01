@@ -1,2 +1,2 @@
-# Matroids.jl
+# Matroids
 Matroids for Julia
