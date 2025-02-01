@@ -4,6 +4,8 @@ using Graphs
 using LinearAlgebra
 using LinearAlgebraX
 
-greet() = print("Hello World!")
+import LinearAlgebra: rank
+
+include("RankFunction.jl")
 
 end # module Matroids
