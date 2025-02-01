@@ -6,6 +6,6 @@ using LinearAlgebraX
 
 import LinearAlgebra: rank
 
-include("RankFunction.jl")
+include("RankFunctions.jl")
 
 end # module Matroids
