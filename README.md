@@ -1,5 +1,7 @@
 # Matroids
 
+> THIS IS A VERY EARLY RELEASE FOR PURPOSE OF REGISTRATION
+
 ## What is a Matroid?
 A *matroid* is a pair $(S,\mathcal{I})$ where $S$ is a set and $\mathcal{I}$ is a set
 of subsets of $S$ where
