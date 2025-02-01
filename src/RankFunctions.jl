@@ -41,7 +41,7 @@ struct UniformRankFunction <: AbstractRankFunction
     m::Int
     k::Int
     function UniformRankFunction(mm, kk)
-        if mm < 1 || kk < 0 || kk > mm
+        if mm < 0 || kk < 0 || kk > mm
             throw(DomainError((mm, kk), "Invalid arguments for UniformMatroid"))
         end
         return new(mm, kk)
