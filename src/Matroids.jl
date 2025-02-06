@@ -8,7 +8,8 @@ import Base: show
 import LinearAlgebra: rank
 import Graphs: ne
 
-export Matroid, UniformMatroid, isindependent, isloop, ne, rank, show
+export Matroid,
+    UniformMatroid, basis, isindependent, isloop, min_weight_basis, ne, rank, show
 
 include("RankFunctions.jl")
 
@@ -37,5 +38,6 @@ end
 show(io::IO, M::Matroid) = print(io, "{$(ne(M)), $(rank(M))} matroid")
 
 include("Properties.jl")
+include("Bases.jl")
 
 end # module Matroids

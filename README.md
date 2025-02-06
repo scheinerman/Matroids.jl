@@ -1,6 +1,6 @@
 # Matroids
 
-> THIS IS A VERY EARLY RELEASE FOR PURPOSE OF REGISTRATION
+**THIS IS A VERY EARLY RELEASE!!  Any update below 0.1.0 might be breaking.**
 
 ## What is a Matroid?
 A *matroid* is a pair $(S,\mathcal{I})$ where $S$ is a set and $\mathcal{I}$ is a set
@@ -25,7 +25,6 @@ Given a matrix `A`, use `Matroid(A)` to create a matroid based on the column vec
 Given a graph `g`, use `Matroid(g)` to create the cycle matroid of `g`. Here, `g` is an 
 undirected graph from the `Graphs` module. The graph may have loops, but multiple edges are not supported by `Graphs`. 
 
-> To do: Create a simple `MultiGraph` type to include multiple edges.
 
 ### Uniform Matroids
 
@@ -46,3 +45,19 @@ Let `M` be a matroid.
 
 * `isloop(M,x)` checks if `x` is a loop element in `M`.
 
+
+## Bases
+
+
+
+
+## To Do List
+
+
+* Create a simple `MultiGraph` type to include multiple edges.
+* Other ways to create matroids (e.g., from a finite projective plane).
+* Implement matroid operations such as:
+    * Dual
+    * Disjoint union
+    * Deletion
+    * Contraction

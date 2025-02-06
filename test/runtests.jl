@@ -24,3 +24,18 @@ end
     loops = [x for x in 1:ne(M) if isloop(M, x)]
     @test length(loops) == 1
 end
+
+@testset "Bases" begin
+    g = cycle_graph(5)
+    add_edge!(g, 1, 1)
+    M = Matroid(g)
+    B = basis(M)
+    @test length(B) == rank(M)
+
+    wt = Dict{Int,Float64}()
+    for x in 1:ne(M)
+        wt[x] = rand()
+    end
+    B = min_weight_basis(M, wt)
+    @test length(B) == rank(M)
+end
