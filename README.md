@@ -48,6 +48,10 @@ Let `M` be a matroid.
 
 ## Bases
 
+A *basis* of a matroid is a maximum-size independent set. To find a basis of a matroid `M`, use `basis(M)`. Note that matroid typically has many bases. This function returns one of them with no guarantee as to which.
+
+Given weights `wt` (specified as a `Dict`) for the elements of a matroid `M`, use 
+`min_weight_basis(M, wt)` to return a basis the sum of whose weights is smallest. 
 
 
 
