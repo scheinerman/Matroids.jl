@@ -37,10 +37,19 @@ Let `M` be a matroid.
 
 ## Bases
 
-A *basis* of a matroid is a maximum-size independent set. To find a basis of a matroid `M`, use `basis(M)`. Note that matroid typically has many bases. This function returns one of them with no guarantee as to which.
+A *basis* of a matroid is a maximum-size independent set. 
+To find a basis of a matroid `M`, use `basis(M)`. 
+Note that matroid typically has many bases. 
+This function returns one of them with no guarantee as to which.
 
 Given weights `wt` (specified as a `Dict`) for the elements of a matroid `M`, use 
 `min_weight_basis(M, wt)` to return a basis the sum of whose weights is smallest. 
+
+The function `random_basis(M)` returns a random basis of `M` by the following algorithm:
+Assign random weights to the elements of `M` and then apply `min_weight_basis`.
+
+Finally, `all_bases(M)` returns an iterator that generates all the bases of `M`. 
+Note that the number of bases may be enormous. 
 
 
 ## Operations
@@ -59,7 +68,6 @@ For a matroid `M`, use `dual(M)` to create the dual of `M`.
 * Create a simple `MultiGraph` type to include multiple edges.
 * Other ways to create matroids (e.g., from a finite projective plane).
 * Implement matroid operations such as:
-    * Dual
     * Disjoint union
     * Deletion
     * Contraction

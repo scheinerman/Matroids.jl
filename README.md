@@ -34,13 +34,3 @@ julia> dual(M)
 ```
 
 
-
-## To Do List
-
-
-* Create a simple `MultiGraph` type to include multiple edges.
-* Other ways to create matroids (e.g., from a finite projective plane).
-* Implement matroid operations such as:
-    * Disjoint union
-    * Deletion
-    * Contraction

@@ -1,5 +1,5 @@
 module Matroids
-
+using Combinatorics
 using Graphs
 using LinearAlgebra
 using LinearAlgebraX
@@ -11,6 +11,7 @@ import Graphs: ne
 export AbstractRankFunction,
     Matroid,
     UniformMatroid,
+    all_bases,
     basis,
     dual,
     isindependent,
@@ -18,6 +19,7 @@ export AbstractRankFunction,
     min_weight_basis,
     ne,
     rank,
+    random_basis,
     show
 
 include("RankFunctions.jl")
@@ -40,7 +42,7 @@ function Matroid(g::Graph)
 end
 
 function Matroid()     # empty matroid
-    A = ones(Int,0,0)
+    A = ones(Int, 0, 0)
     return Matroid(A)
 end
 
