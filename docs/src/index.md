@@ -60,6 +60,65 @@ These operations create new matroids from previously created matroids. Remember:
 
 For a matroid `M`, use `dual(M)` to create the dual of `M`. 
 
+The resulting matroid has the same ground set as `M` and the labels in the new matroid are the
+same as the labels in `M`.
+
+
+### Deletion
+
+Given a matroid `M` and a subset `S` of the ground set of `M`, 
+the function `delete(M,S)` forms a new matroid by deleting
+the members of `S` from `M`.  Here `S` may be either a `Set` or a `Vector` of integer values. 
+
+Recall our convention that the ground set of a `Matroid` must be of the form `{1,2,...,m}`. 
+The implication of this is that the element of the new matroid may correspond to a higher number
+element of the original.
+
+For example, define a `Matroid` using the following 2x7 matrix:
+```
+julia> A = [1 2 3 4 5 6 7; 8 9 10 11 12 13 14]
+2×7 Matrix{Int64}:
+ 1  2   3   4   5   6   7
+ 8  9  10  11  12  13  14
+
+julia> M = Matroid(A)
+{7, 2} matroid
+```
+From this matroid, we delete elements `2` and `5`. 
+```
+julia> MM = delete(M, [2,5])
+{5, 2} matroid
+```
+The deletion of element 2 from `M` makes element 3 in `M` move to position 2 in `MM`.
+Likewise, element 4 moves to position 3 in `MM`. 
+We skip element 5 (it has been deleted) and so element 6 goes to position 4 in `MM`. 
+Likewise element 7 in `M` becomes element `5` in `MM`. 
+
+This can be illustrated by examining the labels. Consider element 3 of `M` which 
+is now at index 2 in `MM`:
+```
+julia> get_label(M,3)
+2-element Vector{Int64}:
+  3
+ 10
+
+julia> get_label(MM,2)
+2-element Vector{Int64}:
+  3
+ 10
+```
+Likewise, element 7 of `M` moves to position `5` in `MM`:
+```
+julia> get_label(M,7)
+2-element Vector{Int64}:
+  7
+ 14
+
+julia> get_label(MM,5)
+2-element Vector{Int64}:
+  7
+ 14
+```
 
 
 ## To Do List
@@ -69,5 +128,4 @@ For a matroid `M`, use `dual(M)` to create the dual of `M`.
 * Other ways to create matroids (e.g., from a finite projective plane).
 * Implement matroid operations such as:
     * Disjoint union
-    * Deletion
     * Contraction
