@@ -24,10 +24,19 @@ export AbstractRankFunction,
 
 include("RankFunctions.jl")
 
+"""
+Create a `Matroid` as follows:
+* `Matroid(m::Int, r::AbstractRankFunction)` given the number of elements and a rank function.
+* `Matroid(A::AbstractMatrix)` given a matrix.
+* `Matroid(g::Graph)` given a graph.
+* `Matroid()` yields the matroid with no elements. 
+
+See also: `UniformMatroid`.
+"""
 struct Matroid
     m::Int
     r::AbstractRankFunction
-    function Matroid(mm::Int, rr::AbstractRankFunction)
+    function Matroid(mm::T, rr::AbstractRankFunction) where {T<:Integer}
         return new(mm, rr)
     end
     function Matroid(A::AbstractMatrix)
