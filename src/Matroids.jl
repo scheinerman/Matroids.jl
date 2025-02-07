@@ -1,4 +1,5 @@
 module Matroids
+
 using Combinatorics
 using Graphs
 using LinearAlgebra
@@ -14,12 +15,16 @@ export AbstractRankFunction,
     all_bases,
     basis,
     dual,
+    find_label,
+    get_label,
     isindependent,
     isloop,
     min_weight_basis,
     ne,
     rank,
     random_basis,
+    reset_labels,
+    set_label,
     show
 
 include("RankFunctions.jl")
@@ -36,18 +41,23 @@ See also: `UniformMatroid`.
 struct Matroid
     m::Int
     r::AbstractRankFunction
+    labels::Dict{Int,Any}
+
     function Matroid(mm::T, rr::AbstractRankFunction) where {T<:Integer}
-        return new(mm, rr)
+        return new(mm, rr, _default_labels(mm))
     end
+
     function Matroid(A::AbstractMatrix)
         _, m = size(A)
-        return new(m, MatrixRankFunction(A))
+        return new(m, MatrixRankFunction(A), _column_labels(A))
     end
 end
 
 function Matroid(g::Graph)
-    A = incidence_matrix(g; oriented=true)
-    return Matroid(A)
+    A, labs = _incidence_and_labels(g)
+    M = Matroid(A)
+    reset_labels(M, labs)
+    return M
 end
 
 function Matroid()     # empty matroid
@@ -57,6 +67,7 @@ end
 
 show(io::IO, M::Matroid) = print(io, "{$(ne(M)), $(rank(M))} matroid")
 
+include("Labels.jl")
 include("Properties.jl")
 include("Bases.jl")
 include("Dual.jl")

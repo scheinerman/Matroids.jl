@@ -5,7 +5,8 @@ using Documenter, Matroids
 makedocs(;
     pages=[
         "Documentation" => "index.md",
-        "Design" => "design.md",
+        "Module Design" => "design.md",
+        "Labeling Elements" => "labels.md",
         "What is a Matroid?" => "math.md",
     ],
     sitename="Matroids",
