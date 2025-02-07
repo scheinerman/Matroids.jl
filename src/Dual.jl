@@ -6,7 +6,9 @@ Create a new matroid that is the dual of `M`.
 function dual(M::Matroid)
     m = ne(M)
     r = DualRankFunction(m, M.r)
-    return Matroid(m, r)
+    MM = Matroid(m, r)
+    reset_labels(MM, M.labels)
+    return MM
 end
 
 struct DualRankFunction <: AbstractRankFunction
