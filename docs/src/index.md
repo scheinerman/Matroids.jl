@@ -56,7 +56,7 @@ Note that the number of bases may be enormous.
 
 These operations create new matroids from previously created matroids. Remember: Matroids are immutable so these operations do not modify existing matroids.
 
-## Duality
+## Duality: $M^*$
 
 For a matroid `M`, use `dual(M)` to create the dual of `M`. 
 
@@ -64,14 +64,16 @@ The resulting matroid has the same ground set as `M` and the labels in the new m
 same as the labels in `M`.
 
 
-## Deletion
+## Deletion: $M \backslash X$
 
-Given a matroid `M` and a subset `S` of the ground set of `M`, 
-the function `delete(M,S)` forms a new matroid by deleting
-the members of `S` from `M`.  Here `S` may be either a `Set` or a `Vector` of integer values. 
+Given a matroid `M` and a subset `X` of the ground set of `M`, 
+the function `delete(M,X)` forms a new matroid by deleting
+the members of `X` from `M`.  Here `X` may be either a `Set` or a `Vector` of integer values. 
+In addition, `delete(M,x)`, where `x` is an integer, deletes the single element from `M`.
+In all cases, the `\` operator may be used: `M\X` or `M\x`.
 
 Recall our convention that the ground set of a `Matroid` must be of the form `{1,2,...,m}`. 
-The implication of this is that the element of the new matroid may correspond to a higher number
+The implication of this is that an element of the new matroid may correspond to a higher number
 element of the original.
 
 For example, define a `Matroid` using the following 2x7 matrix:
@@ -120,6 +122,38 @@ julia> get_label(MM,5)
  14
 ```
 
+## Contraction: $M / X$
+
+Given a matroid `M` and a subset of its ground set `X`, use `contract(M,X)`
+to produced a new matroid formed by contracting the elements in `X`. 
+Here, `X` may be either a `Set` or a `Vector` of integer values. In addition, 
+`contract(M,x)`, where `x` is an integer, contracts the single element `x`. In 
+all cases the `/` operator may be used: `M/X` or `M/x`. 
+
+As in the case of deletion, the elements of `X` are eliminated from the matroid by the contraction
+operation, and the remaining elements are renumbered so that the resulting 
+ground set is of the usual form, `{1,2,...,m}`.
+
+Labels carry forward from the original matroid to the contracted result. 
+
+Element contraction in a matroid corresponds to edge contraction in a graph. 
+For example, if we delete an edge from a cycle, we get a path, whereas if we 
+contract an edge in a cycle we get a smaller cycle. This is reflected in the 
+corresponding matroids:
+```
+julia> g = cycle_graph(8)
+{8, 8} undirected simple Int64 graph
+
+julia> M = Matroid(g)
+{8, 7} matroid
+
+julia> delete(M,1)
+{7, 7} matroid
+
+julia> contract(M,1)
+{7, 6} matroid
+```
+
 
 # To Do List
 
@@ -128,4 +162,3 @@ julia> get_label(MM,5)
 * Other ways to create matroids (e.g., from a finite projective plane).
 * Implement matroid operations such as:
     * Disjoint union
-    * Contraction

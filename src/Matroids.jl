@@ -5,15 +5,16 @@ using Graphs
 using LinearAlgebra
 using LinearAlgebraX
 
-import Base: show
+import Base: show, (/), (\)
 import LinearAlgebra: rank
-import Graphs: ne
+import Graphs: contract, ne
 
 export AbstractRankFunction,
     Matroid,
     UniformMatroid,
     all_bases,
     basis,
+    contract,
     delete,
     dual,
     find_label,
