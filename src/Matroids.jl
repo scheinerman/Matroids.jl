@@ -39,6 +39,11 @@ function Matroid(g::Graph)
     return Matroid(A)
 end
 
+function Matroid()     # empty matroid
+    A = ones(Int,0,0)
+    return Matroid(A)
+end
+
 show(io::IO, M::Matroid) = print(io, "{$(ne(M)), $(rank(M))} matroid")
 
 include("Properties.jl")

@@ -1,22 +1,24 @@
 # How the `Matroids` Module Works
 
 The fundamental design philosophy of this `Matroids` module is that  
-* the ground set of a matroid is always of the form `{1,2,\ldots,m}`,
-* matroids are defined by way of their *rank function*, and
-* the matroid data structures are *immutable*.
+* the ground set of a matroid is always of the form $\{1,2,\ldots,m\}$,
+* a matroid is defined by way of its *rank function*, and
+* the matroid data structure is *immutable*.
 
 ## Ground Sets
 
-We adopt the philosophy of the [Graphs](https://juliagraphs.org/Graphs.jl/stable/) modules in that the ground set of a matroid is *always* of the form $\{1,2,\ldots,m\}$ where $m$ is a nonnegative integer. 
+We adopt the philosophy of the [Graphs](https://juliagraphs.org/Graphs.jl/stable/) module:  the ground set of a matroid is *always* of the form $\{1,2,\ldots,m\}$ where $m$ is a nonnegative integer. 
 
 
 ## Rank Functions Define Matroids
 
-Mathematically, matroids are defined as a pair $(S,\mathcal{I})$ where $\mathcal{I}$ is the set of subsets of $S$ that are independent. However, keeping $\mathcal{I}$ as a data structure is inefficient because the number of independent sets in a matroid may be enormous. 
+Mathematically, matroids are defined as a pair $(S,\mathcal{I})$ where $\mathcal{I}$ is the set of subsets of $S$ that are independent. 
+However, keeping $\mathcal{I}$ as a data structure is inefficient because the number of independent sets in a matroid may be enormous. 
 
-For example, the simple uniform matroid $U(10,5)$ has a ten element ground set but has 638 independent sets. However, the rank function of this matroid is easy to define. For any subset $X$ of the ground set $[10]$, we simply have
-$\rho(X) = \min\{|X|, 5\}$.
+For example, the simple uniform matroid $U(10,5)$ has a ten-element ground set and over 600 independent sets. 
+However, the rank function of this matroid is easy to define. For any subset $X$ of the ground set $[10]$, we simply have $\rho(X) = \min\{|X|, 5\}$.
 
+In other words, matroids are defined by providing a [rank oracle](https://en.wikipedia.org/wiki/Matroid_oracle).
  
 
 ## Matroids are Immutable
@@ -25,11 +27,15 @@ One created, a matroid cannot be modified. Operations on matroids, such as delet
 
 For example, when an element of a matroid $M$ is deleted, a new matroid is created. 
 
-For example, if a matroid has 10 elements and element 3 is deleted, the new matroid's ground set is $\{1,2,\ldots,9\}$. If (say) $\{2,5,7\}$ is independent in $M$, then in the new matroid the set $\{2,4,6\}$ is independent. If $x$ is an element with $x>3$, then in the new matroid it is represented as $x-1$. This is consistent with vertex deletion in [Graphs](https://juliagraphs.org/Graphs.jl/stable/). 
+For example, if a matroid has 10 elements and element 3 is deleted, the new matroid's ground set is $\{1,2,\ldots,9\}$. 
+If (say) $\{2,5,7\}$ is independent in $M$, then in the new matroid the set $\{2,4,6\}$ is independent. 
+If $x$ is an element with $x>3$, then in the new matroid it is represented as $x-1$. This is consistent with vertex deletion in [Graphs](https://juliagraphs.org/Graphs.jl/stable/). 
 
 ## Creating Your Own Matroid
 
-To create a new type of matroid, first define a structure for its rank function. This should be a subtype of `AbstractRankFunction`. The definition should look something like this:
+To create a new type of matroid, first define a structure for its rank function. 
+This should be a subtype of `AbstractRankFunction`. 
+The definition should look like this:
 ```julia
 struct MyRankFunction <: AbstractRankFunction
     data
@@ -40,10 +46,10 @@ struct MyRankFunction <: AbstractRankFunction
 end
 ```
 
-Second, defined how your rank function operates on a set of integers:
+Second, define how your rank function operates on a set of integers:
 ```julia
 (r::MyRankFunction)(S::Set{T}) where {T<:Integer}
-    # calculate the rank, r of the set S
+    # calculate the rank, r, of the set S
     return r
 end
 ```
