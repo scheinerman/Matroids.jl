@@ -53,3 +53,13 @@ end
     M = dual(Matroid(g))
     @test rank(M) == 1
 end
+
+@testset "Labeling" begin
+    A = [1 2 3; 4 5 6]
+    M = Matroid(A)
+    MM = dual(M)
+    @test get_label(M, 1) == get_label(MM, 1)
+
+    reset_labels(M)
+    @test get_label(M, 2) == 2
+end
