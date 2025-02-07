@@ -58,13 +58,16 @@ The function `reset_labels` can be used in two ways:
 ## Finding an Element with a Given Label
 
 The function `find_label(M, lab)` returns an element of `M` whose label is `lab`. 
-If no such element exists, then `0` is returned. Note that labels may be repeated, but this
-function returns only one element (the lowest number element) with that label. 
+If no such element exists, then `0` is returned. 
+
+Note that labels may be repeated; this
+function returns only one element (the lowest number element) with the requested label. 
 
 ## Label Preservation
 
-As much as possible, matroid operations preserve labels. For example, the label on element `e`
-of matroid `M` is copied to element `e` when constructing `M`'s dual:
+Matroid operations preserve labels. For example, suppose element `e` of matroid `M`
+has the label `lab`. When we construct the dual of `M` (which has the same ground
+set as `M`), the label assigned to `e` in the dual is also `lab`.
 
 ```
 julia> A = [1 2 3; 4 5 6]
