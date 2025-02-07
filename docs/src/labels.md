@@ -49,11 +49,11 @@ julia> get_label(M,1)
 
 ## Setting Labels
 
-To assign a label to element `e` of matroid `M`, use `set_label(M, e, label)`.
+To assign a label to element `e` of matroid `M`, use `set_label!(M, e, label)`.
 
-The function `reset_labels` can be used in two ways:
-* `reset_labels(M)` sets the label of elemement `e` to be `e` for all `e`.
-* `reset_labels(M, labs)` sets the label of element `e` to be `labs[e]` for all `e`. Here, `labs` is a `Dict`.
+The function `reset_labels!` can be used in two ways:
+* `reset_labels!(M)` sets the label of elemement `e` to be `e` for all `e`.
+* `reset_labels!(M, labs)` sets the label of element `e` to be `labs[e]` for all `e`. Here, `labs` is a `Dict`.
 
 ## Finding an Element with a Given Label
 

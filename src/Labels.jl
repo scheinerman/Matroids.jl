@@ -38,22 +38,22 @@ function find_label(M::Matroid, lab)
 end
 
 """
-    set_label(M::Matroid, x::T, lab) where {T<:Integer}
+    set_label!(M::Matroid, x::T, lab) where {T<:Integer}
 
 Set the label of element `x` in matroid `M` to `lab`.
 """
-function set_label(M::Matroid, x::T, lab) where {T<:Integer}
+function set_label!(M::Matroid, x::T, lab) where {T<:Integer}
     M.labels[x] = lab
     return nothing
 end
 
 """
-    reset_labels(M::Matroid)
+    reset_labels!(M::Matroid)
 
 Set the labels of the elements of `M` to their default, i.e., 
 element `x` has label `x`.
 """
-function reset_labels(M::Matroid)
+function reset_labels!(M::Matroid)
     for e in 1:ne(M)
         M.labels[e] = e
     end
@@ -61,11 +61,11 @@ function reset_labels(M::Matroid)
 end
 
 """
-    reset_labels(M::Matroid, labs::Dict)
+    reset_labels!(M::Matroid, labs::Dict)
 
 Reset all labels for `M` to be `labs`.
 """
-function reset_labels(M::Matroid, labs::Dict)
+function reset_labels!(M::Matroid, labs::Dict)
     for x in 1:ne(M)
         M.labels[x] = labs[x]
     end

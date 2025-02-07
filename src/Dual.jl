@@ -7,7 +7,7 @@ function dual(M::Matroid)
     m = ne(M)
     r = DualRankFunction(m, M.r)
     MM = Matroid(m, r)
-    reset_labels(MM, M.labels)
+    reset_labels!(MM, M.labels)
     return MM
 end
 

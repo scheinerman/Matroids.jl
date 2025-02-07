@@ -23,8 +23,8 @@ export AbstractRankFunction,
     ne,
     rank,
     random_basis,
-    reset_labels,
-    set_label,
+    reset_labels!,
+    set_label!,
     show
 
 include("RankFunctions.jl")
@@ -56,7 +56,7 @@ end
 function Matroid(g::Graph)
     A, labs = _incidence_and_labels(g)
     M = Matroid(A)
-    reset_labels(M, labs)
+    reset_labels!(M, labs)
     return M
 end
 
