@@ -60,6 +60,17 @@ end
     MM = dual(M)
     @test get_label(M, 1) == get_label(MM, 1)
 
-    reset_labels(M)
+    reset_labels!(M)
     @test get_label(M, 2) == 2
+end
+
+@testset "Deletion/Contraction" begin
+    g = cycle_graph(10)
+    M = Matroid(g)
+
+    M_del = M \ 1   # looks like a 10-path
+    @test rank(M_del) == 9
+
+    M_con = M / 1   # looks like a 9-cycle
+    @test rank(M_con) == 8
 end
