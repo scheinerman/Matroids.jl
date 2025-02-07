@@ -1,7 +1,7 @@
 # Labeling Elements of a Matroid
 
 The ground set of a `Matroid` is always of the form `{1,2,...,m}` where `m`
-is a nonnegative integer. It can be useful, however, to assign more descriptive
+is a nonnegative integer. It can be useful, however, to assign descriptive
 labels to matroid elements. For example, when creating a matroid from a graph,
 the label for an element of the matroid can be a descriptor of the edge to which
 it corresponds. 
