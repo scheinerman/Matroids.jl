@@ -5,17 +5,17 @@
 
 In this implementation of matroids, the ground set, `S`, is always of the form `{1,2,...,m}` where `m` is a nonnegative integer.  
 
-### Matroid from a Matrix
+#### Matroid from a Matrix
 
 Given a matrix `A`, use `Matroid(A)` to create a matroid based on the column vectors in `A`.
 
-### Matroid from a Graph
+#### Matroid from a Graph
 
 Given a graph `g`, use `Matroid(g)` to create the cycle matroid of `g`. Here, `g` is an 
 undirected graph from the `Graphs` module. The graph may have loops, but multiple edges are not supported by `Graphs`. 
 
 
-### Uniform Matroids
+#### Uniform Matroids
 
 Use `UniformMatroid(m,k)` to create a matroid whose ground set is `{1,2,...,m}` in which all sets of size `k` or smaller are independent. 
 
@@ -52,11 +52,11 @@ Finally, `all_bases(M)` returns an iterator that generates all the bases of `M`.
 Note that the number of bases may be enormous. 
 
 
-## Operations
+# Operations
 
 These operations create new matroids from previously created matroids. Remember: Matroids are immutable so these operations do not modify existing matroids.
 
-### Duality
+## Duality
 
 For a matroid `M`, use `dual(M)` to create the dual of `M`. 
 
@@ -64,7 +64,7 @@ The resulting matroid has the same ground set as `M` and the labels in the new m
 same as the labels in `M`.
 
 
-### Deletion
+## Deletion
 
 Given a matroid `M` and a subset `S` of the ground set of `M`, 
 the function `delete(M,S)` forms a new matroid by deleting
@@ -121,7 +121,7 @@ julia> get_label(MM,5)
 ```
 
 
-## To Do List
+# To Do List
 
 
 * Create a simple `MultiGraph` type to include multiple edges.
