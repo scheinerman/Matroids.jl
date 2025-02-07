@@ -54,7 +54,9 @@ Set the labels of the elements of `M` to their default, i.e.,
 element `x` has label `x`.
 """
 function reset_labels(M::Matroid)
-    M.labels = _default_labels(ne(M))
+    for e = 1:ne(M)
+        M.labels[e] = e 
+    end
     return nothing
 end
 
