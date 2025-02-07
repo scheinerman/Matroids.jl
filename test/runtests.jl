@@ -39,3 +39,17 @@ end
     B = min_weight_basis(M, wt)
     @test length(B) == rank(M)
 end
+
+@testset "Duality" begin
+    A = ones(Int, 3, 8)
+    M = Matroid(A)
+    @test rank(M) == 1
+    M = dual(M)
+    @test rank(M) == 7
+    M = dual(M)
+    @test rank(M) == 1
+
+    g = cycle_graph(5)
+    M = dual(Matroid(g))
+    @test rank(M) == 1
+end

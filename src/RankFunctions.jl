@@ -57,3 +57,8 @@ function (ur::UniformRankFunction)(S::Set{T}) where {T<:Integer}
     ns = length(S)
     return min(ur.k, ns)
 end
+
+function UniformMatroid(m::Int, k::Int)
+    rf = UniformRankFunction(m, k)
+    return Matroid(m, rf)
+end

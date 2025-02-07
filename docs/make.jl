@@ -2,4 +2,11 @@
 # julia --color=yes --project make.jl
 
 using Documenter, Matroids
-makedocs(; sitename="Matroids")
+makedocs(;
+    pages=[
+        "Documentation" => "index.md",
+        "Design" => "design.md",
+        "What is a Matroid?" => "math.md",
+    ],
+    sitename="Matroids",
+)
