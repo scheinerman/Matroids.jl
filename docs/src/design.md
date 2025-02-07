@@ -48,9 +48,9 @@ Second, defined how your rank function operates on a set of integers:
 end
 ```
 
-> It is important that your rank function satisfy the usual matroid rank axioms or the resulting `Matroid` will not be a matroid.
+> It is important that your rank function satisfy the matroid rank axioms or the resulting `Matroid` will not be a matroid.
 
-Finally, define a function to `MyMatroid(data)` that creates the matroid:
+Finally, define a function `MyMatroid(parameters)` that creates the matroid:
 ```julia
 function MyMatroid(parameters)
     # create the rank function r and the size of the ground set m from the parameters

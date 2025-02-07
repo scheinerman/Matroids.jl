@@ -4,7 +4,7 @@
 
 
 
-See [the documentation](https://docs.juliahub.com/General/Matroids/stable/) for information on how to use this module. 
+See [the documentation](https://docs.juliahub.com/General/Matroids/stable/) for information on how to use this module. Use of this module presumes familiarity with matroids.
 
 ## Quick Start
 * `M = Matroid(A)` for a matrix `A` creates the matroid based on the linear independent subsets of columns of `A`.
