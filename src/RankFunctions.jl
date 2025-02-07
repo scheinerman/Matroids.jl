@@ -68,3 +68,18 @@ function UniformMatroid(m::Int, k::Int)
     rf = UniformRankFunction(m, k)
     return Matroid(m, rf)
 end
+
+## MapBack rank functions
+
+struct MapBackRankFunction <: AbstractRankFunction
+    r::AbstractRankFunction    # rank func of other matroid
+    mapback::Dict{Int,Int}
+    function MapBackRankFunction(rr, mm)
+        return new(rr, mm)
+    end
+end
+
+function (mbr::MapBackRankFunction)(S::Set{T}) where {T<:Integer}
+    SS = Set(mbr.mapback[x] for x in S)
+    return mbr.r(SS)
+end

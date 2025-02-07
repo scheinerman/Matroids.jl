@@ -14,6 +14,7 @@ export AbstractRankFunction,
     UniformMatroid,
     all_bases,
     basis,
+    delete,
     dual,
     find_label,
     get_label,
@@ -71,5 +72,6 @@ include("Labels.jl")
 include("Properties.jl")
 include("Bases.jl")
 include("Dual.jl")
+include("Delete.jl")
 
 end # module Matroids
