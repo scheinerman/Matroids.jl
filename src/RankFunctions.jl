@@ -74,8 +74,8 @@ end
 struct MapBackRankFunction <: AbstractRankFunction
     r::AbstractRankFunction    # rank func of other matroid
     mapback::Dict{Int,Int}
-    function MapBackRankFunction(rr, mm)
-        return new(rr, mm)
+    function MapBackRankFunction(rr, mb)
+        return new(rr, mb)
     end
 end
 

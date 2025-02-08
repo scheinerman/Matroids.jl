@@ -1,7 +1,7 @@
 name = "Matroids"
 uuid = "f99c5f09-8689-4482-a891-4b988ec2fc3d"
 authors = ["Ed Scheinerman <ers@jhu.edu>"]
-version = "0.0.5"
+version = "0.0.6"
 
 [deps]
 

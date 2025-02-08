@@ -5,7 +5,7 @@ using Graphs
 using LinearAlgebra
 using LinearAlgebraX
 
-import Base: show, (/), (\)
+import Base: show, (/), (\), (+)
 import LinearAlgebra: rank
 import Graphs: contract, ne
 
@@ -16,6 +16,7 @@ export AbstractRankFunction,
     basis,
     contract,
     delete,
+    disjoint_union,
     dual,
     find_label,
     get_label,
@@ -74,5 +75,6 @@ include("Properties.jl")
 include("Bases.jl")
 include("Dual.jl")
 include("Delete.jl")
+include("Union.jl")
 
 end # module Matroids
