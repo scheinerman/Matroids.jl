@@ -31,8 +31,6 @@ export AbstractRankFunction,
     set_label!,
     show
 
-public _random_set
-
 include("RankFunctions.jl")
 
 """

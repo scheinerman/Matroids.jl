@@ -1,5 +1,5 @@
 using Test
-using Matroids, Graphs
+using Matroids, Graphs, LinearAlgebra
 
 @testset "Matrix Matroids" begin
     A = [1 2 3; 4 5 6]
@@ -76,4 +76,18 @@ end
 end
 
 @testset "Disjoint Union" begin
+    for _ in 1:10
+        A1 = rand(Int, 3, 7) .% 10
+        A2 = rand(Int, 5, 11) .% 10
+        M1 = Matroid(A1)
+        M2 = Matroid(A2)
+
+        M = M1 + M2
+        @test rank(M) == rank(A1) + rank(A2)
+
+        A = [A1 zeros(Int, 3, 11); zeros(Int, 5, 7) A2]
+        MM = Matroid(A)
+
+        @test fuzzy_equal(M, MM)
+    end
 end
