@@ -7,26 +7,32 @@ using LinearAlgebraX
 
 import Base: show, (/), (\), (+)
 import LinearAlgebra: rank
-import Graphs: contract, ne
+import Graphs: contract, edges, incidence_matrix, ne, nv
 
 export AbstractRankFunction,
+    EasyMultiGraph,
     Matroid,
     UniformMatroid,
+    add!,
     all_bases,
     basis,
     contract,
     delete,
     disjoint_union,
     dual,
+    edges,
     find_label,
     fuzzy_equal,
     get_label,
+    incidence_matrix,
     isindependent,
     isloop,
     min_weight_basis,
     ne,
+    nv,
     rank,
     random_basis,
+    rem!,
     reset_labels!,
     set_label!,
     show
@@ -71,6 +77,7 @@ end
 
 show(io::IO, M::Matroid) = print(io, "{$(ne(M)), $(rank(M))} matroid")
 
+include("MultiGraphs.jl")
 include("FuzzyEquality.jl")
 include("Labels.jl")
 include("Properties.jl")
