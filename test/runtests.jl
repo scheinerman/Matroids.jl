@@ -74,3 +74,6 @@ end
     M_con = M / 1   # looks like a 9-cycle
     @test rank(M_con) == 8
 end
+
+@testset "Disjoint Union" begin
+end

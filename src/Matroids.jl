@@ -19,6 +19,7 @@ export AbstractRankFunction,
     disjoint_union,
     dual,
     find_label,
+    fuzzy_equal,
     get_label,
     isindependent,
     isloop,
@@ -29,6 +30,8 @@ export AbstractRankFunction,
     reset_labels!,
     set_label!,
     show
+
+public _random_set
 
 include("RankFunctions.jl")
 
@@ -70,6 +73,7 @@ end
 
 show(io::IO, M::Matroid) = print(io, "{$(ne(M)), $(rank(M))} matroid")
 
+include("FuzzyEquality.jl")
 include("Labels.jl")
 include("Properties.jl")
 include("Bases.jl")
