@@ -86,30 +86,3 @@ function _column_labels(A::AbstractMatrix)::Dict
     end
     return labs
 end
-
-"""
-    _incidence_and_labels(g::Graph)
-
-Create a signed incidence matrix for the graph `g` and corresponding
-labels. 
-"""
-function _incidence_and_labels(g::Graph)
-    n = nv(g)
-    m = ne(g)
-    A = zeros(Int, n, m)
-    labs = Dict{Int,Any}()
-
-    elist = collect(edges(g))
-
-    for i in 1:m
-        e = elist[i]
-        u = src(e)
-        v = dst(e)
-        if u != v
-            A[u, i] = 1
-            A[v, i] = -1
-        end
-        labs[i] = (min(u, v), max(u, v))
-    end
-    return A, labs
-end

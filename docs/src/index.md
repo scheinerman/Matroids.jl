@@ -9,10 +9,14 @@ In this implementation of matroids, the ground set, `S`, is always of the form `
 
 Given a matrix `A`, use `Matroid(A)` to create a matroid based on the column vectors in `A`.
 
-#### Matroid from a Graph
+#### Matroid from a Graph or Multigraph
 
 Given a graph `g`, use `Matroid(g)` to create the cycle matroid of `g`. Here, `g` is an 
 undirected graph from the `Graphs` module. The graph may have loops, but multiple edges are not supported by `Graphs`. 
+
+We also provide a basic implementation of multigraphs, `EasyMultiGraph`, that allows multiple edges and loops. 
+[See the documentation.]
+If `g` is an `EasyMultiGraph`, then `Matroid(g)` creates its cycle matroid. 
 
 
 #### Uniform Matroids

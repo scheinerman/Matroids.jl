@@ -37,6 +37,7 @@ export AbstractRankFunction,
     set_label!,
     show
 
+include("MultiGraphs.jl")
 include("RankFunctions.jl")
 
 """
@@ -44,6 +45,7 @@ Create a `Matroid` as follows:
 * `Matroid(m::Int, r::AbstractRankFunction)` given the number of elements and a rank function.
 * `Matroid(A::AbstractMatrix)` given a matrix.
 * `Matroid(g::Graph)` given a graph.
+* `Matroid(g::EasyMultiGraph)` given a multigraph.
 * `Matroid()` yields the matroid with no elements. 
 
 See also: `UniformMatroid`.
@@ -63,12 +65,19 @@ struct Matroid
     end
 end
 
-function Matroid(g::Graph)
-    A, labs = _incidence_and_labels(g)
+function Matroid(g::EasyMultiGraph)
+    A = incidence_matrix(g)
+    labs = Dict{Int,Any}()
+    elist = edges(g)
+    for i in 1:ne(g)
+        labs[i] = elist[i]
+    end
     M = Matroid(A)
     reset_labels!(M, labs)
     return M
 end
+
+Matroid(g::Graph) = Matroid(EasyMultiGraph(g))
 
 function Matroid()     # empty matroid
     A = ones(Int, 0, 0)
@@ -77,7 +86,6 @@ end
 
 show(io::IO, M::Matroid) = print(io, "{$(ne(M)), $(rank(M))} matroid")
 
-include("MultiGraphs.jl")
 include("FuzzyEquality.jl")
 include("Labels.jl")
 include("Properties.jl")

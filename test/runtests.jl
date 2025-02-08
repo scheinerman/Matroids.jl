@@ -88,7 +88,7 @@ end
         A = [A1 zeros(Int, 3, 11); zeros(Int, 5, 7) A2]
         MM = Matroid(A)
 
-        @test fuzzy_equal(M, MM)
+        @test fuzzy_equal(M, MM, 100)
     end
 end
 
@@ -105,4 +105,8 @@ end
 
     IM = incidence_matrix(g)
     @test sum(IM) == 0
+
+    M = Matroid(g)
+    @test isloop(M, 3)
+    @test rank(M) == 5
 end
