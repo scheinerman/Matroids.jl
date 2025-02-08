@@ -1,7 +1,7 @@
 # Matroids
 
 
-## Creating Matroids
+# Creating Matroids
 
 In this implementation of matroids, the ground set, `S`, is always of the form `{1,2,...,m}` where `m` is a nonnegative integer.  
 
@@ -20,7 +20,9 @@ undirected graph from the `Graphs` module. The graph may have loops, but multipl
 Use `UniformMatroid(m,k)` to create a matroid whose ground set is `{1,2,...,m}` in which all sets of size `k` or smaller are independent. 
 
 
-## Determining Matroid Properties
+# Matroid Properties
+
+## Basic Properties
 
 Let `M` be a matroid. 
 
@@ -51,6 +53,22 @@ Assign random weights to the elements of `M` and then apply `min_weight_basis`.
 Finally, `all_bases(M)` returns an iterator that generates all the bases of `M`. 
 Note that the number of bases may be enormous. 
 
+## Equality Testing (Randomized)
+
+We provide the function `fuzzy_equal` that performs a randomized equality check of a pair of matroids. 
+Two matroids are equal if their ground sets are equal and, for any subset `X` of the ground set, 
+the rank of `X` is the same in both matroids. 
+
+If two matroids have, say, 20 elements each, testing that the rank functions give identical results would entail calculating the ranks of over a million subsets.
+
+The function `fuzzy_equal` tests equality by repeatedly generating a random subset `X` of the ground set and checking that the rank of `X` is the same in both matroids.
+
+To use this function, simply call `fuzzy_equal(M1,M2)`. One thousand random sets `X` will be generated and their ranks compared. If the function returns `false`, the matroids are definitely not equal. If the function returns `true`, they probably are equal.
+
+#### Options
+
+* The number of tests can be modified by calling `fuzzy_equal(M1,M2,reps)` with a different value for `reps`.
+* A random subset of the ground set is created by choosing each element of the ground set with probability `0.5`. A different probability may be used by calling `fuzzy_equal(M1,M2,reps,p)` and providing a different value for `p`.
 
 # Operations
 
@@ -155,11 +173,33 @@ julia> contract(M,1)
 {7, 6} matroid
 ```
 
+## Disjoint Union: $M_1 + M_2$
+
+Given matroids `M1` and `M2`, the result of `disjoint_union(M1,M2)` is a new matroid defined
+as follows:
+* Let `m1` and `m2` be the number of elements of `M1` and `M2`, respectively. 
+* Form a copy of `M2` (call it `M2a`) by shifting its elements from `1` to `m2` to be from `m1+1` to `m1+m2`. 
+* Let `S1` and `S2a` be the ground sets of `M1` and `M2a`, respectively. 
+* The rank of a set `X` is calculated as the sum of the rank (in `M1`) of `X ∩ S1` and the rank (in `M2a`) of `X ∩ S2`.
+
+
+This is analogous to the direct sum of matrices and the disjoint union of graphs. For example, 
+suppose
+$A_1 = \begin{bmatrix} 1&2&3\\4&5&6 \end{bmatrix}$ and
+$A_2 = \begin{bmatrix} 7 & 8 \\ 9& 10 \end{bmatrix}$
+and let `M1` and `M2` be their corresponding matroids. 
+Then the disjoint union of `M1` and `M2` is the matroid derived from this matrix:
+$A_1 \oplus A_2 = \begin{bmatrix}
+  1 & 2 & 3 & 0 & 0 \\
+  4 & 5 & 6 & 0 & 0 \\
+  0 & 0 & 0 & 7 & 8 \\
+  0 & 0 & 0 & 9 & 10
+  \end{bmatrix}.$
+
+The operations `disjoint_union(M1, M2)` may alternatively be invoked as `M1 + M2`. 
 
 # To Do List
 
 
 * Create a simple `MultiGraph` type to include multiple edges.
 * Other ways to create matroids (e.g., from a finite projective plane).
-* Implement matroid operations such as:
-    * Disjoint union
