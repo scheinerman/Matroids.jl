@@ -7,7 +7,8 @@ The fundamental design philosophy of this `Matroids` module is that
 
 ## Ground Sets
 
-We adopt the philosophy of the [Graphs](https://juliagraphs.org/Graphs.jl/stable/) module:  the ground set of a matroid is *always* of the form $\{1,2,\ldots,m\}$ where $m$ is a nonnegative integer. 
+We adopt the philosophy of the [Graphs](https://juliagraphs.org/Graphs.jl/stable/) module:  
+the ground set of a matroid is *always* of the form $\{1,2,\ldots,m\}$ where $m$ is a nonnegative integer. 
 
 
 ## Rank Functions Define Matroids
@@ -16,20 +17,20 @@ Mathematically, matroids are defined as a pair $(S,\mathcal{I})$ where $\mathcal
 However, keeping $\mathcal{I}$ as a data structure is inefficient because the number of independent sets in a matroid may be enormous. 
 
 For example, the simple uniform matroid $U(10,5)$ has a ten-element ground set and over 600 independent sets. 
-However, the rank function of this matroid is easy to define. For any subset $X$ of the ground set $[10]$, we simply have $\rho(X) = \min\{|X|, 5\}$.
+However, the rank function of this matroid is easy to define. 
+For any subset $X$ of the ground set $[10]$, we simply have $\rho(X) = \min\{|X|, 5\}$.
 
 In other words, matroids are defined by providing a [rank oracle](https://en.wikipedia.org/wiki/Matroid_oracle).
  
 
 ## Matroids are Immutable
 
-One created, a matroid cannot be modified. Operations on matroids, such as deleting an element, create a new matroid. 
-
-For example, when an element of a matroid $M$ is deleted, a new matroid is created. 
+Once created, a matroid cannot be modified. Operations on matroids, such as deleting an element, create a new matroid. 
 
 For example, if a matroid has 10 elements and element 3 is deleted, the new matroid's ground set is $\{1,2,\ldots,9\}$. 
 If (say) $\{2,5,7\}$ is independent in $M$, then in the new matroid the set $\{2,4,6\}$ is independent. 
-If $x$ is an element with $x>3$, then in the new matroid it is represented as $x-1$. This is consistent with vertex deletion in [Graphs](https://juliagraphs.org/Graphs.jl/stable/). 
+If $x$ is an element with $x>3$, then in the new matroid it is represented as $x-1$. 
+This is consistent with vertex deletion in [Graphs](https://juliagraphs.org/Graphs.jl/stable/). 
 
 ## Creating Your Own Matroid
 

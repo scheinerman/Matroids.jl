@@ -54,9 +54,10 @@ Note that the number of bases may be enormous.
 
 # Operations
 
-These operations create new matroids from previously created matroids. Remember: Matroids are immutable so these operations do not modify existing matroids.
+These operations create new matroids from previously created matroids. 
+> Matroids are immutable; operations do not modify existing matroids.
 
-## Duality: $M^*$
+## Dual: $M^*$
 
 For a matroid `M`, use `dual(M)` to create the dual of `M`. 
 
