@@ -22,7 +22,12 @@ struct EasyMultiGraph
     end
 
     function EasyMultiGraph(g::Graph)
-        return new(Matrix(adjacency_matrix(g)))
+        n = nv(g)
+        A = Matrix(adjacency_matrix(g))
+        for u in 1:n
+            A[u, u] = A[u, u] ÷ 2
+        end
+        return new(A)
     end
 end
 

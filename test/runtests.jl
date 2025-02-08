@@ -91,3 +91,18 @@ end
         @test fuzzy_equal(M, MM)
     end
 end
+
+@testset "MultiGraphs" begin
+    g = EasyMultiGraph(6)
+    for i in 1:5
+        @test add!(g, i, i + 1)
+    end
+    h = EasyMultiGraph(path_graph(6))
+    @test g.A == h.A
+
+    @test add!(g, 3, 3)
+    @test ne(g) == 6
+
+    IM = incidence_matrix(g)
+    @test sum(IM) == 0
+end

@@ -6,6 +6,7 @@ makedocs(;
     pages=[
         "Main Documentation" => "index.md",
         "Labeling Elements" => "labels.md",
+        "Multigraphs" => "multigraphs.md",
         "Module Design" => "design.md",
         "What is a Matroid?" => "math.md",
     ],
