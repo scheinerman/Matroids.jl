@@ -1,6 +1,6 @@
 # Matroids
 
-**THIS IS A VERY EARLY RELEASE!!  Any update below 0.1.0 might be breaking.**
+**THIS IS AN EARLY RELEASE!!  Any update below 0.1.0 might be breaking.**
 
 
 
