@@ -20,7 +20,13 @@ For example, the simple uniform matroid $U(10,5)$ has a ten-element ground set a
 However, the rank function of this matroid is easy to define. 
 For any subset $X$ of the ground set $[10]$, we simply have $\rho(X) = \min\{|X|, 5\}$.
 
-In other words, matroids are defined by providing a [rank oracle](https://en.wikipedia.org/wiki/Matroid_oracle).
+In other words, matroids are defined by providing a 
+[rank oracle](https://en.wikipedia.org/wiki/Matroid_oracle).
+
+When new matroids are formed from existing matroids, the rank function for the new matroid depends on accessing the rank function(s) of the earlier matroid(s). 
+For example, suppose a matroid $M=(S,\mathcal{I})$ has rank function $r$. 
+We create the dual, $M^*$, of $M$ by providing it with the rank function 
+$r^*(X) = |S| - r(M) + r(S-X)$. 
  
 
 ## Matroids are Immutable
