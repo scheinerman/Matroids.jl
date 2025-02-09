@@ -1,8 +1,5 @@
 # Matroids
 
-**THIS IS AN EARLY RELEASE!!  Any update below 0.1.0 might be breaking.**
-
-
 
 See [the documentation](https://docs.juliahub.com/General/Matroids/stable/) for information on how to use this module. Use of this module presumes familiarity with matroids.
 
@@ -33,4 +30,7 @@ julia> dual(M)
 {5, 1} matroid
 ```
 
+## Extras
+
+Additional code for this module may be found in the `Extras` folder. 
 
