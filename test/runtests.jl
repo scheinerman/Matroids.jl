@@ -110,3 +110,18 @@ end
     @test isloop(M, 3)
     @test rank(M) == 5
 end
+
+@testset "Closure" begin
+    g = cycle_graph(6)
+    M = Matroid(g)
+    X = Set(1:4)
+    @test closure(M, X) == X
+
+    X = Set(1:5)
+    @test closure(M, X) == Set(1:6)
+
+    add_edge!(g, 1, 1)
+    M = Matroid(g)
+    X = closure(M, Set{Int}())
+    @test length(X) == 1
+end

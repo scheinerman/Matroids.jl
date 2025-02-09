@@ -9,6 +9,7 @@ makedocs(;
         "Multigraphs" => "multigraphs.md",
         "Module Design" => "design.md",
         "What is a Matroid?" => "math.md",
+        "List of Functions" => "functions.md",
     ],
     sitename="Matroids",
 )

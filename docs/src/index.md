@@ -57,6 +57,15 @@ Assign random weights to the elements of `M` and then apply `min_weight_basis`.
 Finally, `all_bases(M)` returns an iterator that generates all the bases of `M`. 
 Note that the number of bases may be enormous. 
 
+## Closure
+
+The *closure* of a set of elements $X$ of a matroid is a superset of $X$ that includes all 
+elements $x$ such that the rank of $X \cup \{x\}$ equals the rank of $X$. 
+A set of elements $X$ is called *flat* if it is equal to its closure. 
+
+* `closure(M,X)` computes the closure of the set `X` in the matroid `M`.
+* `isflat(M,X)` determines if `X` is a flat in `M`. 
+
 ## Equality Testing (Randomized)
 
 We provide the function `fuzzy_equal` that performs a randomized equality check on a pair of matroids. 
@@ -206,3 +215,4 @@ Aside: The $\oplus$ operation is implemented as `dcat` in
 The operations `disjoint_union(M1, M2)` may alternatively be invoked as `M1 + M2`. 
 
 > **Note**: Labels in the disjoint union of `M1` and `M2` are set to be consecutive integers starting with 1. 
+

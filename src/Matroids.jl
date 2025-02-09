@@ -16,6 +16,7 @@ export AbstractRankFunction,
     add!,
     all_bases,
     basis,
+    closure,
     contract,
     delete,
     disjoint_union,
@@ -25,6 +26,7 @@ export AbstractRankFunction,
     fuzzy_equal,
     get_label,
     incidence_matrix,
+    isflat,
     isindependent,
     isloop,
     min_weight_basis,
@@ -90,6 +92,7 @@ include("FuzzyEquality.jl")
 include("Labels.jl")
 include("Properties.jl")
 include("Bases.jl")
+include("Closure.jl")
 include("Dual.jl")
 include("Delete.jl")
 include("Union.jl")

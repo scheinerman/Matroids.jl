@@ -46,7 +46,7 @@ end
 """
     all_bases(M::Matroid)
 
-Return an iterators that generates all the bases of `M`.
+Return an iterator that generates all the bases of `M`.
 """
 function all_bases(M::Matroid)
     r = rank(M)
