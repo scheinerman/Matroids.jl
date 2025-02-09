@@ -49,8 +49,8 @@ end
 
 Second, define how your rank function operates on a set of integers:
 ```julia
-(r::MyRankFunction)(S::Set{T}) where {T<:Integer}
-    # calculate the rank, r, of the set S
+(r::MyRankFunction)(X::Set{T}) where {T<:Integer}
+    # calculate the rank, r, of the set X
     return r
 end
 ```

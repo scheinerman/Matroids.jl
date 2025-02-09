@@ -34,18 +34,18 @@ Let `M` be a matroid.
 
 * The rank of `M` is given by `rank(M)`.
 
-* If `S` is a subset of the elements of `M`, the rank of that set is given by `rank(M,S)`. This may be called on a list of elements (e.g., `rank(M,1,2,3)`) or a vector of elements (e.g., `rank(M,[1,2,3])`).
+* If `X` is a subset of the ground set of `M`, the rank of that set is given by `rank(M,X)`. This may be called on a list of elements (e.g., `rank(M,1,2,3)`) or a vector of elements (e.g., `rank(M,[1,2,3])`).
 
-* Use `isindependent(M,S)` to check if `S` is an independent subset of the elements of `M`. 
+* Use `isindependent(M,X)` to check if `X` is an independent subset of the elements of `M`. 
 
-* `isloop(M,x)` checks if `x` is a loop element in `M`.
+* `isloop(M,e)` checks if `e` is a loop element in `M`.
 
 
 ## Bases
 
 A *basis* of a matroid is a maximum-size independent set. 
 To find a basis of a matroid `M`, use `basis(M)`. 
-Note that matroid typically has many bases. 
+Note that a matroid typically has many bases. 
 This function returns one of them with no guarantee as to which.
 
 Given weights `wt` (specified as a `Dict`) for the elements of a matroid `M`, use 
@@ -59,7 +59,7 @@ Note that the number of bases may be enormous.
 
 ## Equality Testing (Randomized)
 
-We provide the function `fuzzy_equal` that performs a randomized equality check of a pair of matroids. 
+We provide the function `fuzzy_equal` that performs a randomized equality check on a pair of matroids. 
 Two matroids are equal if their ground sets are equal and, for any subset `X` of the ground set, 
 the rank of `X` is the same in both matroids. 
 
@@ -200,10 +200,9 @@ $A_1 \oplus A_2 = \begin{bmatrix}
   0 & 0 & 0 & 9 & 10
   \end{bmatrix}.$
 
+Aside: The $\oplus$ operation is implemented as `dcat` in 
+[SimpleTools](https://github.com/scheinerman/SimpleTools.jl).
+
 The operations `disjoint_union(M1, M2)` may alternatively be invoked as `M1 + M2`. 
 
-# To Do List
-
-
-* Create a simple `MultiGraph` type to include multiple edges.
-* Other ways to create matroids (e.g., from a finite projective plane).
+> **Note**: Labels in the disjoint union of `M1` and `M2` are set to be consecutive integers starting with 1. 
