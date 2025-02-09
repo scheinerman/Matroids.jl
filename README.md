@@ -32,5 +32,5 @@ julia> dual(M)
 
 ## Extras
 
-Additional code for this module may be found in the `Extras` folder. 
+Additional code for this module may be found in the `extras` folder. 
 
