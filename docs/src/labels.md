@@ -11,7 +11,7 @@ Labels can be arbitrary and need not be unique.
 The function `get_label(M, x)` returns the label associated with element `x` of
 the matroid `M`.
 
-
+> Note: The `Matroid` structure is immutable but labels may be modified. 
 
 ## Default Labels
 
@@ -34,7 +34,8 @@ julia> get_label(M,1)
  1
  4
 ```
-When constructing a `Matroid` from a graph `g`, the label assigned to `e` is a tuple `(u,v)`
+When constructing a `Matroid` from a graph or multigraph `g`, 
+the label assigned to `e` is a tuple `(u,v)`
 corresponding to the `e`-th edge of `g`. 
 ```
 julia> g = path_graph(5)
@@ -49,7 +50,7 @@ julia> get_label(M,1)
 
 ## Setting Labels
 
-To assign a label to element `e` of matroid `M`, use `set_label!(M, e, label)`.
+To assign a label to element `e` of matroid `M`, use `set_label!(M, e, label)`. Note that the label may be `Any` type of value. 
 
 The function `reset_labels!` can be used in two ways:
 * `reset_labels!(M)` sets the label of elemement `e` to be `e` for all `e`.
@@ -65,7 +66,7 @@ function returns only one element (the lowest number element) with the requested
 
 ## Label Preservation
 
-Matroid operations preserve labels. For example, suppose element `e` of matroid `M`
+Some matroid operations preserve labels. For example, suppose element `e` of matroid `M`
 has the label `lab`. When we construct the dual of `M` (which has the same ground
 set as `M`), the label assigned to `e` in the dual is also `lab`.
 

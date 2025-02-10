@@ -1,5 +1,7 @@
 # Matroids
 
+We presume familiarity with matroids. See the **What is a Matroid?** section of this documentation.
+
 
 # Creating Matroids
 
@@ -15,7 +17,7 @@ Given a graph `g`, use `Matroid(g)` to create the cycle matroid of `g`. Here, `g
 undirected graph from the `Graphs` module. The graph may have loops, but multiple edges are not supported by `Graphs`. 
 
 We also provide a basic implementation of multigraphs, `EasyMultiGraph`, that allows multiple edges and loops. 
-[See the documentation.]
+[See the **Multigraphs** section of this documentation.]
 If `g` is an `EasyMultiGraph`, then `Matroid(g)` creates its cycle matroid. 
 
 
@@ -24,7 +26,20 @@ If `g` is an `EasyMultiGraph`, then `Matroid(g)` creates its cycle matroid.
 Use `UniformMatroid(m,k)` to create a matroid whose ground set is `{1,2,...,m}` in which all sets of size `k` or smaller are independent. 
 
 
+
+
 # Matroid Properties
+
+## Display Format
+
+A matroid is printed (e.g, using `println`) in the form `{m, r} matroid` where `m` is the number of elements in the matroid and `r` is its rank. Example:
+```
+julia> using Matroids, Graphs
+
+julia> Matroid(complete_graph(5))
+{10, 4} matroid
+```
+
 
 ## Basic Properties
 
@@ -81,7 +96,7 @@ To use this function, simply call `fuzzy_equal(M1,M2)`. One thousand random sets
 #### Options
 
 * The number of tests can be modified by calling `fuzzy_equal(M1,M2,reps)` with a different value for `reps`.
-* A random subset of the ground set is created by choosing each element of the ground set with probability `0.5`. A different probability may be used by calling `fuzzy_equal(M1,M2,reps,p)` and providing a different value for `p`.
+* A random subset of the ground set is created by choosing each element of the ground set with probability `0.5`. A different probability may be used by calling `fuzzy_equal(M1,M2,reps,p)` and providing the desired value for `p`.
 
 # Operations
 
@@ -157,7 +172,7 @@ julia> get_label(MM,5)
 ## Contraction: $M / X$
 
 Given a matroid `M` and a subset of its ground set `X`, use `contract(M,X)`
-to produced a new matroid formed by contracting the elements in `X`. 
+to produce a new matroid formed by contracting the elements in `X`. 
 Here, `X` may be either a `Set` or a `Vector` of integer values. In addition, 
 `contract(M,x)`, where `x` is an integer, contracts the single element `x`. In 
 all cases the `/` operator may be used: `M/X` or `M/x`. 
@@ -193,7 +208,7 @@ as follows:
 * Let `m1` and `m2` be the number of elements of `M1` and `M2`, respectively. 
 * Form a copy of `M2` (call it `M2a`) by shifting its elements from `1` to `m2` to be from `m1+1` to `m1+m2`. 
 * Let `S1` and `S2a` be the ground sets of `M1` and `M2a`, respectively. 
-* The rank of a set `X` is calculated as the sum of the rank (in `M1`) of `X ∩ S1` and the rank (in `M2a`) of `X ∩ S2`.
+* The rank of a set `X` is calculated as the sum of the rank (in `M1`) of `X ∩ S1` and the rank (in `M2a`) of `X ∩ S2a`.
 
 
 This is analogous to the direct sum of matrices and the disjoint union of graphs. For example, 
@@ -212,7 +227,7 @@ $A_1 \oplus A_2 = \begin{bmatrix}
 Aside: The $\oplus$ operation is implemented as `dcat` in 
 [SimpleTools](https://github.com/scheinerman/SimpleTools.jl).
 
-The operations `disjoint_union(M1, M2)` may alternatively be invoked as `M1 + M2`. 
+The function `disjoint_union(M1, M2)` may alternatively be invoked as `M1 + M2`. 
 
-> **Note**: Labels in the disjoint union of `M1` and `M2` are set to be consecutive integers starting with 1. 
+> **Note**: Labels in the disjoint union of `M1` and `M2` are set to be consecutive integers starting with 1. We do not carry labels forward from either `M1` or `M2`.
 

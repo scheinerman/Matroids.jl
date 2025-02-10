@@ -1,4 +1,4 @@
-# List of Functions and their Documentation
+# List of Functions and their Documentation Messages
 
 ```@autodocs
 Modules = [Matroids]

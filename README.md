@@ -1,8 +1,10 @@
 # Matroids
 
+A *matroid* is a mathematical structure that provides a generalization/abstraction of the notion of linear independence.
+Use of this module presumes familiarity with matroids.
 
-See [the documentation](https://docs.juliahub.com/General/Matroids/stable/) for information on how to use this module. Use of this module presumes familiarity with matroids.
 
+See [the documentation](https://docs.juliahub.com/General/Matroids/stable/) for information on how to use this module. 
 ## Quick Start
 * `M = Matroid(A)` for a matrix `A` creates the matroid based on the linear independent subsets of columns of `A`.
 * `M = Matroid(g)` for a graph `g` creates the matroid based on the acyclic subsets of the edges of `g`.

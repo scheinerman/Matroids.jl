@@ -9,7 +9,7 @@ We provide a bare-bones implementation of multigraphs that allow loops and multi
 Multigraphs can be created by either specifying a nonnegative integer for the number of vertices or a `Graph`. 
 
 * `EasyMultiGraph(n::Int)` creates a multigraph with vertex set `{1,2,...,n}`.
-* `EasyMultiGraph(g::Graph)` creates a multigraph by copying `g` with every vertex having multiplicity `1`.
+* `EasyMultiGraph(g::Graph)` creates a multigraph by copying `g` with every edge having multiplicity `1`.
 
 > **NOTE**: Once created, the number of vertices in an `EasyMultiGraph` cannot be changed.
 
@@ -65,11 +65,11 @@ julia> edges(g)
  (4, 5)
 ```
 
-## Why Create `EasyMultigraphs`?
+## Why Create the `EasyMultiGraph` Type?
 
 The Julia [Graphs](https://juliagraphs.org/Graphs.jl/stable/) module does not allow multiple edges. 
 
 The [Multigraphs](https://github.com/QuantumBFS/Multigraphs.jl) module has 
 some [issues](https://github.com/QuantumBFS/Multigraphs.jl/issues) that render it 
 unsuitable for our purposes at this time. If that changes, we may release a new version of
-`Matroids` in which we replace `EasyMultiGraphs` with a different implementation that is more performant and featureful. 
+`Matroids` in which we replace `EasyMultiGraph` with a different implementation that is more performant and featureful. 

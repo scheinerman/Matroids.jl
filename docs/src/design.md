@@ -18,7 +18,7 @@ However, keeping $\mathcal{I}$ as a data structure is inefficient because the nu
 
 For example, the simple uniform matroid $U(10,5)$ has a ten-element ground set and over 600 independent sets. 
 However, the rank function of this matroid is easy to define. 
-For any subset $X$ of the ground set $[10]$, we simply have $\rho(X) = \min\{|X|, 5\}$.
+For any subset $X$ of the ground set $[10]$, we simply have $r(X) = \min\{|X|, 5\}$.
 
 In other words, matroids are defined by providing a 
 [rank oracle](https://en.wikipedia.org/wiki/Matroid_oracle).
