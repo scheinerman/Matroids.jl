@@ -50,7 +50,8 @@ julia> get_label(M,1)
 
 ## Setting Labels
 
-To assign a label to element `e` of matroid `M`, use `set_label!(M, e, label)`. Note that the label may be `Any` type of value. 
+To assign a label to element `e` of matroid `M`, use `set_label!(M, e, label)`. 
+The label may be `Any` type of value. 
 
 The function `reset_labels!` can be used in two ways:
 * `reset_labels!(M)` sets the label of elemement `e` to be `e` for all `e`.
@@ -61,8 +62,7 @@ The function `reset_labels!` can be used in two ways:
 The function `find_label(M, lab)` returns an element of `M` whose label is `lab`. 
 If no such element exists, then `0` is returned. 
 
-Note that labels may be repeated; this
-function returns only one element (the lowest number element) with the requested label. 
+Labels may be repeated; this function returns only one element (the lowest number element) with the requested label. 
 
 ## Label Preservation
 

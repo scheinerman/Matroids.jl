@@ -10,11 +10,10 @@ of subsets of $S$ where:
 
 The set $S$ is called the *ground set* of $M$ and the sets in $\mathcal{I}$ are called *independent*. 
 
-For $X \subseteq S$, the *rank* of $X$ is the size of a largest independent subset of $X$.
-
 The *rank* of a matroid $M=(S,\mathcal{I})$ is the size of a largest independent subset of $S$.
 An independent set of maximum rank is called a *basis*. 
 
+For $X \subseteq S$, the *rank* of $X$ is the size of a largest independent subset of $X$.
 
 
 See a matroid textbook or [online resource](https://en.wikipedia.org/wiki/Matroid) for more detail. 

@@ -45,13 +45,15 @@ julia> Matroid(complete_graph(5))
 
 Let `M` be a matroid. 
 
-* The number of elements in the ground set is given by `ne(M)`. 
+* `ne(M)` returns the number of elements in the ground set of `M`.
 
-* The rank of `M` is given by `rank(M)`.
+* `rank(M)` returns the rank of the matroid `M`.
 
-* If `X` is a subset of the ground set of `M`, the rank of that set is given by `rank(M,X)`. This may be called on a list of elements (e.g., `rank(M,1,2,3)`) or a vector of elements (e.g., `rank(M,[1,2,3])`).
+* `rank(M,X)` returns the rank of the set `X` in the matroid `M`.
 
-* Use `isindependent(M,X)` to check if `X` is an independent subset of the elements of `M`. 
+* `isindependent(M,X)` checks if `X` is an independent subset of the elements of `M`. 
+
+* `iscircuit(M,X)` checks if `X` is a circuit of `M`.
 
 * `isloop(M,e)` checks if `e` is a loop element of `M`.
 
@@ -85,7 +87,7 @@ A set of elements $X$ is called *flat* if it is equal to its closure.
 
 ## Equality Testing (Randomized)
 
-We provide the function `fuzzy_equal` that performs a randomized equality check on a pair of matroids. 
+`fuzzy_equal`  performs a randomized equality check on a pair of matroids. 
 Two matroids are equal if their ground sets are equal and, for any subset `X` of the ground set, 
 the rank of `X` is the same in both matroids. 
 
@@ -107,7 +109,7 @@ These operations create new matroids from previously created matroids.
 
 ## Dual: $M^*$
 
-For a matroid `M`, use `dual(M)` to create the dual of `M`. 
+`dual(M)` creates the dual of `M`. 
 
 The resulting matroid has the same ground set as `M` and the labels in the new matroid are the
 same as the labels in `M`.

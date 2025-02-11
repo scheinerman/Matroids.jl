@@ -31,7 +31,7 @@ For example, suppose a matroid $M=(S,\mathcal{I})$ has rank function $r$.
 We create the dual, $M^*$, of $M$ by providing it with the rank function 
 $r^*(X) = |S| - r(M) + r(S-X)$. 
 
-An additional advantage to this approach is that operations that yield new matroids from old are generally quick. 
+An advantage to this approach is that operations that yield new matroids from old are generally quick. 
 The new matroid's rank function accesses the rank function(s) of the previously defined matroid(s).
  
 
