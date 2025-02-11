@@ -37,9 +37,12 @@ The new matroid's rank function accesses the rank function(s) of the previously 
 
 ## Matroids are Immutable
 
-Once created, a matroid cannot be modified. Operations on matroids, such as deleting an element, create a new matroid. 
+Once created, a matroid cannot be modified. 
+Operations on matroids, such as deleting an element, create a new matroid. 
+(Labels on matroid elements may be changed.)
 
-For example, if a matroid has 10 elements and element 3 is deleted, the new matroid's ground set is $\{1,2,\ldots,9\}$. 
+For example, if a matroid has 10 elements and element 3 is deleted, 
+the new matroid's ground set is $\{1,2,\ldots,9\}$. 
 If (say) $\{2,5,7\}$ is independent in $M$, then in the new matroid the set $\{2,4,6\}$ is independent. 
 If $x$ is an element with $x>3$, then in the new matroid it is represented as $x-1$. 
 This is consistent with vertex deletion in [Graphs](https://juliagraphs.org/Graphs.jl/stable/). 
