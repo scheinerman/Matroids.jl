@@ -13,8 +13,10 @@ the ground set of a matroid is *always* of the form $\{1,2,\ldots,m\}$ where $m$
 
 ## Rank Functions Define Matroids
 
-Mathematically, matroids are defined as a pair $(S,\mathcal{I})$ where $\mathcal{I}$ is the set of subsets of $S$ that are independent. 
-However, keeping $\mathcal{I}$ as a data structure is inefficient because the number of independent sets in a matroid may be enormous. 
+Mathematically, matroids are defined as a pair $(S,\mathcal{I})$ where $\mathcal{I}$ 
+is the set of subsets of $S$ that are independent. 
+However, keeping $\mathcal{I}$ as a data structure is inefficient because 
+the number of independent sets in a matroid may be enormous. 
 
 For example, the simple uniform matroid $U(10,5)$ has a ten-element ground set and over 600 independent sets. 
 However, the rank function of this matroid is easy to define. 
@@ -23,10 +25,14 @@ For any subset $X$ of the ground set $[10]$, we simply have $r(X) = \min\{|X|, 5
 In other words, matroids are defined by providing a 
 [rank oracle](https://en.wikipedia.org/wiki/Matroid_oracle).
 
-When new matroids are formed from existing matroids, the rank function for the new matroid depends on accessing the rank function(s) of the earlier matroid(s). 
+When new matroids are formed from existing matroids, the rank function for the 
+new matroid depends on accessing the rank function(s) of the earlier matroid(s). 
 For example, suppose a matroid $M=(S,\mathcal{I})$ has rank function $r$. 
 We create the dual, $M^*$, of $M$ by providing it with the rank function 
 $r^*(X) = |S| - r(M) + r(S-X)$. 
+
+An additional advantage to this approach is that operations that yield new matroids from old are generally quick. 
+The new matroid's rank function accesses the rank function(s) of the previously defined matroid(s).
  
 
 ## Matroids are Immutable

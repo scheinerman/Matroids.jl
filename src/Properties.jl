@@ -49,10 +49,25 @@ function isindependent(M::Matroid, S::Set{T})::Bool where {T<:Integer}
 end
 
 """
-    isloop(M, x::T) where {T<:Integer}
+    isloop(M, x::T)::Bool where {T<:Integer}
 
 Check if `x` is a loop in the matroid `M`.
 """
-function isloop(M, x::T) where {T<:Integer}
+function isloop(M, x::T)::Bool where {T<:Integer}
     return rank(M, x) == 0
+end
+
+"""
+    iscoloop(M, x::T)::Bool where {T<:Integer}
+
+Check if `x` is a co-loop in the matroid `M`.
+"""
+function iscoloop(M, x::T)::Bool where {T<:Integer}
+    r = rank(M, x)
+    m = ne(M)
+    X = setdiff(Set(1:m), Set([x]))  # complement of {x}
+
+    rr = 1 - rank(M) + rank(M, X)
+
+    return rr == 0
 end

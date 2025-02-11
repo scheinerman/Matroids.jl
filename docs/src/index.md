@@ -53,7 +53,9 @@ Let `M` be a matroid.
 
 * Use `isindependent(M,X)` to check if `X` is an independent subset of the elements of `M`. 
 
-* `isloop(M,e)` checks if `e` is a loop element in `M`.
+* `isloop(M,e)` checks if `e` is a loop element of `M`.
+
+* `iscoloop(M,e)` checks if `e` is a coloop element of `M`. 
 
 
 ## Bases
