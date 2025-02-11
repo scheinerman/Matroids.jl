@@ -9,8 +9,8 @@ See [the documentation](https://docs.juliahub.com/General/Matroids/stable/) for 
 * `M = Matroid(A)` for a matrix `A` creates the matroid based on the linear independent subsets of columns of `A`.
 * `M = Matroid(g)` for a graph `g` creates the matroid based on the acyclic subsets of the edges of `g`.
 * `rank(M)` gives the rank of the matroid.
-* `rank(M, S)` gives the rank of the set `S` in the matroid.
-* `ne(M)` gives the number of elements of `M`. Note that the ground set of `M` is always of the form `{1,2,...,n}`.
+* `rank(M, X)` gives the rank of the set `X` in the matroid.
+* `ne(M)` gives the number of elements of `M`. Note that the ground set of `M` is always of the form `{1,2,...,m}`.
 
 ### Example
 ```
