@@ -60,7 +60,7 @@ function iscircuit(M::Matroid, X::Set{T})::Bool where {T<:Integer}
 
     for x in X
         XX = setdiff(X, Set([x]))
-        if !isindependent(XX)
+        if !isindependent(M, XX)
             return false
         end
     end

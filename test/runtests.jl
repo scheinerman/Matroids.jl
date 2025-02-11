@@ -125,3 +125,21 @@ end
     X = closure(M, Set{Int}())
     @test length(X) == 1
 end
+
+@testset "Circuits" begin
+    g = cycle_graph(6)
+    M = Matroid(g)
+    X = Set([1, 2, 3, 4, 5, 6])
+    @test iscircuit(M, X)
+
+    g = EasyMultiGraph(6)
+    for v in 1:5
+        add!(g, v, v + 1)
+    end
+    add!(g, 1, 6)
+    add!(g, 1, 3)
+
+    M = Matroid(g)
+    X = Set([1, 2, 4])
+    @test iscircuit(M, X)
+end
