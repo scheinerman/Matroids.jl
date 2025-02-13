@@ -143,3 +143,17 @@ end
     X = Set([1, 2, 4])
     @test iscircuit(M, X)
 end
+
+@testset "Equality" begin
+    M1 = UniformMatroid(10, 9)
+    M2 = Matroid(cycle_graph(10))
+    @test fuzzy_equal(M1, M2)
+    @test M1 == M2
+
+    A1 = rand(Int, 4, 15) .% 2
+    A2 = A1[[2, 3, 4, 1], :]
+    M1 = Matroid(A1)
+    M2 = Matroid(A2)
+    @test fuzzy_equal(M1, M2)
+    @test M1 == M2
+end
