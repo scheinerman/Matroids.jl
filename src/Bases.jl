@@ -60,9 +60,20 @@ Generate a random basis for `M` by assigning random weights
 to the elements of `M` and returning a minimum weight basis. 
 """
 function random_basis(M::Matroid)::Set{Int}
+    wts = _random_weights(ne(M))
+    return min_weight_basis(M, wts)
+end
+
+"""
+    _random_weights(n)::Dict{Int,Float64}
+
+Create a dictionary with keys `1` through `n` assigned
+iid random `[0,1]` values. 
+"""
+function _random_weights(n)::Dict{Int,Float64}
     wts = Dict{Int,Float64}()
-    for j in 1:ne(M)
+    for j in 1:n
         wts[j] = rand()
     end
-    return min_weight_basis(M, wts)
+    return wts
 end

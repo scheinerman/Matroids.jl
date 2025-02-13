@@ -1,18 +1,53 @@
 """
-    fuzzy_equal(M1::Matroid, M2::Matroid, reps::Int=1000, p::Real=0.5)::Bool
+    fuzzy_equal(M1::Matroid, M2::Matroid, reps::Int=1000)::Bool
 
 This is a randomized test to see if two matroids are equal. If the result is `false`,
 they are definitely not equal. If the result is `true`, they probably are. 
 """
-function fuzzy_equal(M1::Matroid, M2::Matroid, reps::Int=1000, p::Real=0.5)::Bool
-    if ne(M1) != ne(M2)
+function fuzzy_equal(M1::Matroid, M2::Matroid, reps::Int=1000)::Bool
+    n1 = ne(M1)
+    n2 = ne(M2)
+    if n1 != n2
         return false
     end
 
-    n = ne(M1)
+    if n1 == 0
+        return true
+    end
+
+    r1 = rank(M1)
+    p = r1 / n1
+
+    return fuzzy_equal(M1, M2, reps, p)
+end
+
+function fuzzy_equal(M1::Matroid, M2::Matroid, reps::Int, p::Real)::Bool
+    n1 = ne(M1)
+    n2 = ne(M2)
+    if n1 ≠ n2
+        return false
+    end
+
+    r1 = rank(M1)
+    r2 = rank(M2)
+    if r1 ≠ r2
+        return false
+    end
+
+    # ranks of random sets
     for _ in 1:reps
-        S = _random_set(n, p)
+        S = _random_set(n1, p)
         if rank(M1, S) != rank(M2, S)
+            return false
+        end
+    end
+
+    # equality of random bases
+    for _=1:reps
+        wts = _random_weights(n1)
+        B1 = min_weight_basis(M1,wts)
+        B2 = min_weight_basis(M2,wts)
+        if B1 ≠ B2 
             return false
         end
     end
