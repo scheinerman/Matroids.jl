@@ -5,7 +5,7 @@ using Graphs
 using LinearAlgebra
 using LinearAlgebraX
 
-import Base: show, (/), (\), (+)
+import Base: show, (/), (\), (+), (==)
 import LinearAlgebra: rank
 import Graphs: contract, edges, incidence_matrix, ne, nv
 

@@ -43,11 +43,11 @@ function fuzzy_equal(M1::Matroid, M2::Matroid, reps::Int, p::Real)::Bool
     end
 
     # equality of random bases
-    for _=1:reps
+    for _ in 1:reps
         wts = _random_weights(n1)
-        B1 = min_weight_basis(M1,wts)
-        B2 = min_weight_basis(M2,wts)
-        if B1 ≠ B2 
+        B1 = min_weight_basis(M1, wts)
+        B2 = min_weight_basis(M2, wts)
+        if B1 ≠ B2
             return false
         end
     end
@@ -63,4 +63,29 @@ in the set with probability `p`.
 """
 function _random_set(n::Int, p::Real=0.5)
     return Set(x for x in 1:n if rand() < p)
+end
+
+## True equality
+
+"""
+    (==)(M1::Matroid, M2::Matroid)
+
+Test if matroids `M1` and `M2` are the same.
+
+**WARNING**: Except for small matroids, this function is incredibly slow.
+
+See `fuzzy_equal`
+"""
+function (==)(M1::Matroid, M2::Matroid)
+    if ne(M1) ≠ ne(M2)
+        return false
+    end
+    if rank(M1) ≠ rank(M2)
+        return false
+    end
+
+    B1 = Set(collect(all_bases(M1)))
+    B2 = Set(collect(all_bases(M2)))
+
+    return B1 == B2
 end

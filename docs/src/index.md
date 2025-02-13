@@ -85,7 +85,9 @@ A set of elements $X$ is called *flat* if it is equal to its closure.
 * `closure(M,X)` computes the closure of the set `X` in the matroid `M`.
 * `isflat(M,X)` determines if `X` is a flat in `M`. 
 
-## Equality Testing (Randomized)
+## Equality Testing 
+
+### Randomized Equality Test
 
 `fuzzy_equal`  performs a randomized equality check on a pair of matroids. 
 Two matroids are equal if their ground sets are equal and, for any subset `X` of the ground set, 
@@ -93,14 +95,24 @@ the rank of `X` is the same in both matroids.
 
 If two matroids have, say, 20 elements each, testing that the rank functions give identical results would entail calculating the ranks of over a million subsets.
 
-The function `fuzzy_equal` tests equality by repeatedly generating a random subset `X` of the ground set and checking that the rank of `X` is the same in both matroids.
+The function `fuzzy_equal` tests equality by first checking that the two matroids have the
+same number of elements and the same rank.
+It then repeatedly generates a random subset `X` of the ground set and checks that the rank of `X` is the same in both matroids.
+Then it repeatedly creates minimum weight bases of the two matroids using (the same) random weights and checks to be sure they are the same. 
 
 To use this function, simply call `fuzzy_equal(M1,M2)`. One thousand random sets `X` will be generated and their ranks compared. If the function returns `false`, the matroids are definitely not equal. If the function returns `true`, they probably are equal.
 
 #### Options
 
 * The number of tests can be modified by calling `fuzzy_equal(M1,M2,reps)` with a different value for `reps`.
-* A random subset of the ground set is created by choosing each element of the ground set with probability `0.5`. A different probability may be used by calling `fuzzy_equal(M1,M2,reps,p)` and providing the desired value for `p`.
+* A random subset of the ground set is created by choosing each element of the ground set with probability `r/m` where `r` is the rank of the matroid and `m` is the number of elements. A different probability may be used by calling `fuzzy_equal(M1,M2,reps,p)` and providing the desired value for `p`.
+
+
+### Exact Equality Test
+
+Equality of matroids can be tested using `==`. Except in the case of small matroids, this can be terribly slow. Equality is tested by comparing the sets of all bases of the two matroids. 
+See `all_bases`.
+
 
 # Operations
 
