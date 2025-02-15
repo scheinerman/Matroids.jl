@@ -76,7 +76,7 @@ Test if matroids `M1` and `M2` are the same.
 
 See `fuzzy_equal`
 """
-function (==)(M1::Matroid, M2::Matroid)
+function (==)(M1::Matroid, M2::Matroid)::Bool
     if ne(M1) ≠ ne(M2)
         return false
     end
@@ -88,4 +88,31 @@ function (==)(M1::Matroid, M2::Matroid)
     B2 = Set(collect(all_bases(M2)))
 
     return B1 == B2
+end
+
+"""
+    new_equal(M1::Matroid, M2::Matroid)::Bool
+
+Experimental replacement for `==`.
+"""
+function new_equal(M1::Matroid, M2::Matroid)::Bool
+    if ne(M1) ≠ ne(M2)
+        return false
+    end
+    r = rank(M1)
+    if r ≠ rank(M2)
+        return false
+    end
+
+    B1 = all_bases(M1)
+    B2 = all_bases(M2)
+
+    if !all(rank(M1, B) == r for B in B2)
+        return false
+    end
+    if !all(rank(M2, B) == r for B in B1)
+        return false
+    end
+
+    return true
 end

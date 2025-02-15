@@ -44,6 +44,22 @@ function basis(M::Matroid)::Set{Int}
 end
 
 """
+    basis(M::Matroid, X::Set)::Set{Int}
+
+Return a independent subset of `X` that has size `rank(M,X)`.
+"""
+function basis(M::Matroid, X::Set)::Set{Int}
+    B = Set{Int}()
+    for x in X
+        BB = B ∪ Set([x])
+        if isindependent(M, BB)
+            B = BB
+        end
+    end
+    return B
+end
+
+"""
     all_bases(M::Matroid)
 
 Return an iterator that generates all the bases of `M`.

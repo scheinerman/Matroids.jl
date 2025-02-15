@@ -26,6 +26,17 @@ If `g` is an `EasyMultiGraph`, then `Matroid(g)` creates its cycle matroid.
 Use `UniformMatroid(m,k)` to create a matroid whose ground set is `{1,2,...,m}` in which all sets of size `k` or smaller are independent. 
 
 
+#### Matroid from Bases
+
+Given a collection `BB` of subsets of `{1,2,...,m}`, use `Matroid(m,BB)` to create a matroid 
+whose bases are given in `BB`. Note that `BB` might be a set of sets, a list of sets, or a generator
+of sets. The output of `all_bases` is an acceptable collection of bases for this constructor.
+
+> **Warning**: No check is done to see if the resulting structure is, in fact, a matroid. It is the user's responsibility to be sure that the sets in `BB` satsify the basis axioms of a matroid.
+
+> **Warning**: The matroid created in this way is very inefficient. For example, the rank of a set `X` is determined by intersecting `X` with all the members of the collection of bases. 
+
+
 
 
 # Matroid Properties
@@ -67,6 +78,10 @@ To find a basis of a matroid `M`, use `basis(M)`.
 Note that a matroid typically has many bases. 
 This function returns one of them with no guarantee as to which.
 
+Similarly, `basis(M,X)`, where `X` is a subset of the elements of `M`, returns a 
+maximum size independent subset of `X`. (The size of subset returned equals the 
+rank of `X`, by definiton.)
+
 Given weights `wt` (specified as a `Dict`) for the elements of a matroid `M`, use 
 `min_weight_basis(M, wt)` to return a basis the sum of whose weights is smallest. 
 
@@ -75,6 +90,8 @@ Assign random weights to the elements of `M` and then apply `min_weight_basis`.
 
 Finally, `all_bases(M)` returns an iterator that generates all the bases of `M`. 
 Note that the number of bases may be enormous. 
+
+
 
 ## Closure
 

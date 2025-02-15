@@ -81,6 +81,12 @@ function Matroid(g::EasyMultiGraph)
     return M
 end
 
+function Matroid(m::Int, BB::BasisBunch)
+    rk = BasisRankFunction(m, BB)
+
+    return Matroid(m, rk)
+end
+
 Matroid(g::Graph) = Matroid(EasyMultiGraph(g))
 
 function Matroid()     # empty matroid
@@ -90,7 +96,7 @@ end
 
 show(io::IO, M::Matroid) = print(io, "{$(ne(M)), $(rank(M))} matroid")
 
-include("FuzzyEquality.jl")
+include("Equality.jl")
 include("Labels.jl")
 include("Properties.jl")
 include("Bases.jl")

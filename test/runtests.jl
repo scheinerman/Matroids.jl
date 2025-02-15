@@ -25,6 +25,29 @@ end
     @test length(loops) == 1
 end
 
+@testset "Matroids from Bases" begin
+    g = cycle_graph(5)
+    add_edge!(g, 1, 3)
+    M1 = Matroid(g)
+
+    BB = all_bases(M1)
+    M2 = Matroid(ne(M1), BB)
+
+    @test M1 == M2
+
+    g = cycle_graph(6)
+    add_edge!(g, 1, 3)
+    M = Matroid(g)
+    m = ne(M)
+    S = Set(1:m)
+    BB = (setdiff(S, B) for B in all_bases(M))
+
+    M1 = Matroid(m, BB)
+    M2 = dual(M)
+
+    @test M1 == M2
+end
+
 @testset "Bases" begin
     g = cycle_graph(5)
     add_edge!(g, 1, 1)

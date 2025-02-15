@@ -16,33 +16,33 @@ struct MatrixRankFunction <: AbstractRankFunction
 end
 
 """
-    _column_picker(A::AbstractMatrix, S::Set{T}) where {T<:Integer}
+    _column_picker(A::AbstractMatrix, X::Set{T}) where {T<:Integer}
 
 Return the submatrix of `A` using the columns specified in `S`.
 """
-function _column_picker(A::AbstractMatrix, S::Set{T}) where {T<:Integer}
-    return A[:, collect(S)]
+function _column_picker(A::AbstractMatrix, X::Set{T}) where {T<:Integer}
+    return A[:, collect(X)]
 end
 
 """
-    _set_check(S::Set{T}, m::Int) where {T<:Integer}
+    _set_check(X::Set{T}, m::Int) where {T<:Integer}
 
 Check `S` is a subset of `{1,2,...,m}`. If not, throw an error.
 """
-function _set_check(S::Set{T}, m::Int) where {T<:Integer}
-    if isempty(S)
+function _set_check(X::Set{T}, m::Int) where {T<:Integer}
+    if isempty(X)
         return nothing
     end
-    if minimum(S) > 0 && maximum(S) <= m
+    if minimum(X) > 0 && maximum(X) <= m
         return nothing
     end
-    throw(DomainError(S, "Invalid subset of the matroid elements"))
+    throw(DomainError(X, "Invalid subset of the matroid elements"))
 end
 
-function (mr::MatrixRankFunction)(S::Set{T}) where {T<:Integer}
+function (mr::MatrixRankFunction)(X::Set{T}) where {T<:Integer}
     _, m = size(mr.A)
-    _set_check(S, m)
-    return rankx(_column_picker(mr.A, S))
+    _set_check(X, m)
+    return rankx(_column_picker(mr.A, X))
 end
 
 #### UNIFORM MATROIDS
@@ -58,9 +58,9 @@ struct UniformRankFunction <: AbstractRankFunction
     end
 end
 
-function (ur::UniformRankFunction)(S::Set{T}) where {T<:Integer}
-    _set_check(S, ur.m)
-    ns = length(S)
+function (ur::UniformRankFunction)(X::Set{T}) where {T<:Integer}
+    _set_check(X, ur.m)
+    ns = length(X)
     return min(ur.k, ns)
 end
 
@@ -79,7 +79,32 @@ struct MapBackRankFunction <: AbstractRankFunction
     end
 end
 
-function (mbr::MapBackRankFunction)(S::Set{T}) where {T<:Integer}
-    SS = Set(mbr.mapback[x] for x in S)
+function (mbr::MapBackRankFunction)(X::Set{T}) where {T<:Integer}
+    SS = Set(mbr.mapback[x] for x in X)
     return mbr.r(SS)
+end
+
+## Basis list to rank MatrixRankFunction
+
+BasisBunch = Union{Base.Generator,Set{Set{T}},Vector{Set{T}}} where {T<:Integer}
+
+struct BasisRankFunction <: AbstractRankFunction
+    m::Int
+    BB::BasisBunch
+    function BasisRankFunction(m, BB)
+        return new(m, BB)
+    end
+end
+
+function (BRF::BasisRankFunction)(X::Set)
+    _set_check(X, BRF.m)
+    r = 0
+    for B in BRF.BB
+        I = B ∩ X
+        nI = length(I)
+        if nI > r
+            r = nI
+        end
+    end
+    return r
 end
