@@ -28,4 +28,4 @@ Consider the following two theorems: one from linear algebra and one from graph 
 
 **Theorem 2**. *Any two spanning trees of a connected graph have the same number of edges.*
 
-Matroid theory provides a unifying framework for these results. They are both direct consequences of the fact that in a matroid, any two maximum-size independet sets have the same cardinality.
+Matroid theory provides a unifying framework for these results. They are both direct consequences of the fact that, in a matroid, any two maximum-size independet sets have the same cardinality.
