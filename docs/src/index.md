@@ -25,6 +25,12 @@ If `g` is an `EasyMultiGraph`, then `Matroid(g)` creates its cycle matroid.
 
 Use `UniformMatroid(m,k)` to create a matroid whose ground set is `{1,2,...,m}` in which all sets of size `k` or smaller are independent. 
 
+#### Transversal Matroids
+
+Use `TransversalMatroid(m, set_list)` to create a transversal matroid with ground set `S = {1,...,m}`
+where `set_list` is a list of subsets of `S`. A set `X` of elements is independent provided
+each element of `X` is a member of a distinct set in `set_list`.
+
 
 #### Matroid from Bases
 
