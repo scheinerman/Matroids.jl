@@ -27,7 +27,7 @@ end
 
 function (r::TransversalRankFunction)(X::Set)
     if isempty(X)
-        return 0 
+        return 0
     end
     m = size(r.A)[1]
     _set_check(X, m)

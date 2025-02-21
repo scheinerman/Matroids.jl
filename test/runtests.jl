@@ -180,3 +180,9 @@ end
     @test fuzzy_equal(M1, M2)
     @test M1 == M2
 end
+
+@testset "Transversal Matroids" begin
+    set_list = [Set(1:5), Set(1:5)]
+    M = TransversalMatroid(5, set_list)
+    @test M == UniformMatroid(5, 2)
+end
