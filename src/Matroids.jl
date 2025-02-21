@@ -103,7 +103,6 @@ include("Labels.jl")
 include("Properties.jl")
 include("Bases.jl")
 include("Closure.jl")
-include("Dual.jl")
 include("Delete.jl")
 include("Union.jl")
 
