@@ -44,7 +44,15 @@ export AbstractRankFunction,
     show
 
 include("MultiGraphs.jl")
-include("RankFunctions.jl")
+
+"""
+    AbstractRankFunction
+
+This is the supertype for all matroid rank functions. Its subtypes are not
+exported, but can be viewed with `subtypes(AbstractRankFunction)`.
+"""
+abstract type AbstractRankFunction end
+
 
 """
 Create a `Matroid` as follows:
@@ -83,11 +91,7 @@ function Matroid(g::EasyMultiGraph)
     return M
 end
 
-function Matroid(m::Int, BB::BasisBunch)
-    rk = BasisRankFunction(m, BB)
 
-    return Matroid(m, rk)
-end
 
 Matroid(g::Graph) = Matroid(EasyMultiGraph(g))
 
@@ -98,6 +102,8 @@ end
 
 show(io::IO, M::Matroid) = print(io, "{$(ne(M)), $(rank(M))} matroid")
 
+
+include("RankFunctions.jl")
 include("Equality.jl")
 include("Labels.jl")
 include("Properties.jl")

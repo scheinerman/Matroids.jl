@@ -1,10 +1,3 @@
-"""
-    AbstractRankFunction
-
-This is the supertype for all matroid rank functions. Its subtypes are not
-exported, but can be viewed with `subtypes(AbstractRankFunction)`.
-"""
-abstract type AbstractRankFunction end
 
 """
     _set_check(X::Set{T}, m::Int) where {T<:Integer}
