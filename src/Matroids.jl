@@ -1,6 +1,7 @@
 module Matroids
 
 using Combinatorics
+using Hungarian
 using Graphs
 using LinearAlgebra
 using LinearAlgebraX
@@ -12,6 +13,7 @@ import Graphs: contract, edges, incidence_matrix, ne, nv
 export AbstractRankFunction,
     EasyMultiGraph,
     Matroid,
+    TransversalMatroid,
     UniformMatroid,
     add!,
     all_bases,

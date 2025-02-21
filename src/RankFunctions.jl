@@ -108,3 +108,5 @@ function (BRF::BasisRankFunction)(X::Set)
     end
     return r
 end
+
+include("Transversal.jl")
