@@ -185,4 +185,10 @@ end
     set_list = [Set(1:5), Set(1:5)]
     M = TransversalMatroid(5, set_list)
     @test M == UniformMatroid(5, 2)
+
+    set_list = [Set(1:4), Set(5:7)]
+    M = TransversalMatroid(8, set_list)
+    @test isloop(M, 8)
+    BB = collect(all_bases(M))
+    @test length(BB) == 12
 end
