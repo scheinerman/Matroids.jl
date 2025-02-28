@@ -132,6 +132,14 @@ end
     M = Matroid(g)
     @test isloop(M, 3)
     @test rank(M) == 5
+
+    g = EasyMultiGraph(cycle_graph(10))
+    add!(g, 1, 2)
+    add!(g, 2, 3)
+    @test ne(g) == 12
+
+    gg = SimpleGraph(g)
+    @test gg == cycle_graph(10)
 end
 
 @testset "Closure" begin

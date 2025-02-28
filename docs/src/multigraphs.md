@@ -16,8 +16,8 @@ Multigraphs can be created by either specifying a nonnegative integer for the nu
 ## Adding/Removing Edges
 
 To add/remove edges to a multigraph, we provide the following functions:
-* `add!(g,u,v)` adds an edge `(u,v)` to `g` [increase multiplicity by one].
-* `rem!(g,u,v)` removes an edge `(u,v)` from `g` [decrease multiplicity by one].
+* `add!(g,u,v)` adds an edge `(u,v)` to `g` [increase multiplicity by one]. May also be invoked as `add!(g,(u,v))`.
+* `rem!(g,u,v)` removes an edge `(u,v)` from `g` [decrease multiplicity by one]. May also be invoked as `rem(g,(u,v))`.
 
 These functions return `true` if successful. They return `false` if either `u` or `v` is 
 invalid. The `rem!` function also returns `false` if no `(u,v)` edge is present in `g`.
@@ -30,6 +30,7 @@ The order in which `u` and `v` are given is irrelevant.
 * `ne(g)` returns the number of edges (with multiple edges counted multiply). 
 * `edges(g)` returns a list of the edges with multiple edges appearing repeatedly.
 * `incidence_matrix(g)` returns a signed incidence matrix of `g`. The `i`-th column of this matrix exactly corresponds to the `i`-th entry in the list returned by `edges`. Self loops render as all-zero columns. 
+* `SimpleGraph(g)` returns a `SimpleGraph` (as defined in the `Graphs` module) by ignoring edge multiplicity in `g`.
 
 ### Example
 

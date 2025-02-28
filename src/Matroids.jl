@@ -8,11 +8,11 @@ using LinearAlgebraX
 
 import Base: show, (/), (\), (+), (==)
 import LinearAlgebra: rank
-import Graphs: contract, edges, incidence_matrix, ne, nv
+import Graphs: SimpleGraph, contract, edges, incidence_matrix, ne, nv
 
 export AbstractRankFunction,
     EasyMultiGraph,
-    Matroid,
+    Matroid, SimpleGraph,
     TransversalMatroid,
     UniformMatroid,
     add!,

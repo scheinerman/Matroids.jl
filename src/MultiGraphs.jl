@@ -40,6 +40,7 @@ _valid_vertex(g::EasyMultiGraph, v) = (v > 0) && (v <= nv(g))
 
 """
     add!(g::EasyMultiGraph, u, v)
+    add!(g::EasyMultiGraph, (u,v))
 
 Add an edge to the multigraph by increasing its multiplicity by 1.
 Return `true` if successful. 
@@ -58,8 +59,13 @@ function add!(g::EasyMultiGraph, u, v)::Bool
     return true
 end
 
+function add!(g::EasyMultiGraph, e::Tuple{S,T})::Bool where {S<:Integer,T<:Integer}
+    return add!(g, e...)
+end
+
 """
     rem!(g::EasyMultiGraph, u, v)
+    rem!(g::EasyMultiGraph, (u,v))
 
 Remove an edge from the multigraph by decreasing its multiplicity by 1.
 Return `true` if successful. 
@@ -80,6 +86,10 @@ function rem!(g::EasyMultiGraph, u, v)::Bool
         g.A[v, u] -= 1
     end
     return true
+end
+
+function rem!(g::EasyMultiGraph, e::Tuple{S,T})::Bool where {S<:Integer,T<:Integer}
+    return rem!(g, e...)
 end
 
 """
@@ -126,4 +136,14 @@ function incidence_matrix(g::EasyMultiGraph)
         end
     end
     return IM
+end
+
+"""
+    SimpleGraph(g::EasyMultiGraph)::SimpleGraph
+
+Convert an `EasyMultiGraph` into a `SimpleGraph` by 
+ignoring multiplicities. 
+"""
+function SimpleGraph(g::EasyMultiGraph)::SimpleGraph
+    return SimpleGraph(g.A)
 end
