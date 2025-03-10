@@ -12,7 +12,8 @@ import Graphs: SimpleGraph, contract, edges, incidence_matrix, ne, nv
 
 export AbstractRankFunction,
     EasyMultiGraph,
-    Matroid, SimpleGraph,
+    Matroid,
+    SimpleGraph,
     TransversalMatroid,
     UniformMatroid,
     add!,
