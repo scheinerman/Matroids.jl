@@ -1,4 +1,22 @@
-# List of Functions and their Documentation Messages
+# Documentation Strings for Constructors and Functions
+
+## Constructors 
+
+### Matroids
+```@docs
+Matroid
+TransversalMatroid
+UniformMatroid
+```
+
+### Multigraphs
+
+```@docs
+EasyMultiGraph
+```
+
+
+## Functions
 
 ```@autodocs
 Modules = [Matroids]
