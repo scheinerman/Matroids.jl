@@ -1,6 +1,5 @@
-# Documentation Strings for Constructors and Functions
-
-## Constructors 
+# Documentation Strings for Types & Functions
+## Types 
 
 ### Matroids
 ```@docs
@@ -14,7 +13,11 @@ UniformMatroid
 ```@docs
 EasyMultiGraph
 ```
+### Rank Functions Supertype
 
+```@docs
+AbstractRankFunction
+```
 
 ## Functions
 
